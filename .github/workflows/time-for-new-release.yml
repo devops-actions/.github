@@ -1,7 +1,7 @@
 name: Time for new release
 
 on:
-  workflow_run:
+  workflow_call:
   
 jobs:
   check-time-for-new-release:
