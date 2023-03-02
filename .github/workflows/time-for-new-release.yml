@@ -27,6 +27,7 @@ jobs:
           if ($commitsSinceLastTag -gt 0) {
             Write-Host "Found [$commitsSinceLastTag] commits since last tag, we should create a release"
             echo "newrelease=true" >> $env:GITHUB_OUTPUT
+            echo "tag=$($info.Split("-"))"
           }
           else {
             Write-Host "No changes since last tag, so nothing to release"
@@ -34,13 +35,21 @@ jobs:
           }
           
       # todo: 
-      # set-output in needs-release
-      # check needs-release in new step
-      - run: echo "${{ steps.needs-release.outputs.newrelease }}"
       
       - name: Show output
         if: ${{ steps.needs-release.outputs.newrelease }} === "true"
-        run: echo "Hi there"
+        run: |
+          echo "A new release needs to be created" >> $GITHUB_STEP_OUTPUT
       
       # if yes, call the api to create a new release
       # fetch new release tag first (sem ver? or do we need to check if we made breaking changes? Should not be breaking if all it is, are dependency updates?
+      - name: Simple Semver
+        id: semver
+        if: ${{ steps.needs-release.outputs.newrelease }} === "true"
+        uses: matt-FFFFFF/simple-semver@v0.1.0
+        with:
+          semver-input: ${{ steps.needs-release.outputs.tag }}
+          increment: p
+
+      - name: Use new semver
+        run: echo "New tag= [${{ steps.semver.outputs.semver }}]"
