@@ -39,7 +39,7 @@ jobs:
       - run: echo "${{ steps.needs-release.outputs.newrelease }}"
       
       - name: Show output
-        if: steps.needs-release.outputs.newrelease === "true"
+        if: ${{ steps.needs-release.outputs.newrelease }} === "true"
         run: echo "Hi there"
       
       # if yes, call the api to create a new release
