@@ -35,12 +35,12 @@ jobs:
           
       # todo: 
       # set-output in needs-release
-      # check needs-release in new step"
+      # check needs-release in new step
       - run: echo "${{ steps.needs-release.outputs.newrelease }}"
       
       - name: Show output
         if: ${{ steps.needs-release.outputs.newrelease === "true"
-        run: echo "Hi there
+        run: echo "Hi there"
       
       # if yes, call the api to create a new release
       # fetch new release tag first (sem ver? or do we need to check if we made breaking changes? Should not be breaking if all it is, are dependency updates?
