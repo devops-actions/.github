@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # we need all tags
-          ref: main
+          ref: main # we only publish from the main branch
       
       - shell: pwsh
         id: needs-release
@@ -46,8 +46,8 @@ jobs:
         shell: pwsh
         run: |
           echo "A new release needs to be created" >> $env:GITHUB_STEP_SUMMARY
-          echo "Current tag: [${{ steps.needs-release.outputs.tag }}]" 
-          echo "Current version: [${{ steps.needs-release.outputs.version }}]" 
+          echo "Current tag: [${{ steps.needs-release.outputs.tag }}]" >> $env:GITHUB_STEP_SUMMARY
+          echo "Current version: [${{ steps.needs-release.outputs.version }}]" >> $env:GITHUB_STEP_SUMMARY
           
       # if yes, call the api to create a new release
       # fetch new release tag first (sem ver? or do we need to check if we made breaking changes? Should not be breaking if all it is, are dependency updates?
@@ -61,5 +61,5 @@ jobs:
 
       - name: Use new semver
         run: |
-          echo "New tag=[${{ steps.semver.outputs.semver }}]"
+          echo "New tag=[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_STEP_SUMMARY
           echo "New tag=[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_OUTPUT
