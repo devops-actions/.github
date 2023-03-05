@@ -1,6 +1,9 @@
 name: "Approve Dependabot PR's" 
 on:
   workflow_call:
+  
+permissions:
+  contents: read
 
 jobs:
   dependabot:
