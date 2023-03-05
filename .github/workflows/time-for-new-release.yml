@@ -56,7 +56,7 @@ jobs:
       - name: Simple Semver
         id: semver
         #if: steps.needs-release.outputs.newrelease == 'true'
-        uses: matt-FFFFFF/simple-semver@967d66a65b0c5afae2a815ab2d311f66a32293ab # version in main, will become v0.1.1 I guess?
+        uses: rajbos-actions/simple-semver@967d66a65b0c5afae2a815ab2d311f66a32293ab # version in main, will become v0.1.1 I guess?
         with:
           semver-input: "${{ steps.needs-release.outputs.version }}"
           increment: p
