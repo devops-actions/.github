@@ -3,6 +3,10 @@ name: Time for new release
 on:
   workflow_call:
   
+defaults:
+  run:
+    shell: pwsh
+  
 jobs:
   check-time-for-new-release:
     runs-on: ubuntu-latest
@@ -12,8 +16,7 @@ jobs:
           fetch-depth: 0 # we need all tags
           ref: main # we only publish from the main branch
       
-      - shell: pwsh
-        id: needs-release
+      - id: needs-release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -43,7 +46,6 @@ jobs:
       
       - name: Show output
         #if: steps.needs-release.outputs.newrelease == 'true'
-        shell: pwsh
         run: |
           echo "A new release needs to be created" >> $env:GITHUB_STEP_SUMMARY
           echo "Current tag: [${{ steps.needs-release.outputs.tag }}]" >> $env:GITHUB_STEP_SUMMARY
@@ -61,5 +63,5 @@ jobs:
 
       - name: Use new semver
         run: |
-          echo "New tag=[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_STEP_SUMMARY
+          echo "New tag:[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_STEP_SUMMARY
           echo "New tag=[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_OUTPUT
