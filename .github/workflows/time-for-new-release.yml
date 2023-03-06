@@ -53,6 +53,11 @@ jobs:
           echo "Current tag: [${{ steps.needs-release.outputs.tag }}]" >> $env:GITHUB_STEP_SUMMARY
           echo "Current version: [${{ steps.needs-release.outputs.version }}]" >> $env:GITHUB_STEP_SUMMARY
           
+      - name: Show output when false
+        if: steps.needs-release.outputs.newrelease == 'false'
+        run: |
+          echo "No new release needs to be created" >> $env:GITHUB_STEP_SUMMARY
+          
       # if yes, call the api to create a new release
       # fetch new release tag first (sem ver? or do we need to check if we made breaking changes? Should not be breaking if all it is, are dependency updates?
       - name: Simple Semver
