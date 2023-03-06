@@ -3,6 +3,8 @@ name: Time for new release
 on:
   workflow_call:
   
+  workflow_run:
+  
 defaults:
   run:
     shell: pwsh
@@ -45,7 +47,7 @@ jobs:
           }
       
       - name: Show output
-        #if: steps.needs-release.outputs.newrelease == 'true'
+        if: steps.needs-release.outputs.newrelease == 'true'
         run: |
           echo "A new release needs to be created" >> $env:GITHUB_STEP_SUMMARY
           echo "Current tag: [${{ steps.needs-release.outputs.tag }}]" >> $env:GITHUB_STEP_SUMMARY
