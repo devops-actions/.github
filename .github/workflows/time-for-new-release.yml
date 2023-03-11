@@ -73,3 +73,28 @@ jobs:
         run: |
           echo "New tag:[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_STEP_SUMMARY
           echo "New tag=[${{ steps.semver.outputs.semver }}]" >> $env:GITHUB_OUTPUT
+
+#################################################################################################
+# TODO: 
+#  - define when new release should be made (max changes?)
+#  - make the new release
+#################################################################################################
+
+      - name: Generate an SBOM for the repo
+        shell: pwsh
+        run: |
+          # install the extension
+          gh ext install advanced-security/gh-sbom
+          
+          # run it for an SPDX SBOM
+          $sbom = gh sbom -l | ConvertFrom-Json
+          $sbom | ConvertTo-Json -Depth 100 >> sbom-spdx.json
+          
+          # run it for a CycloneDX SBOM
+          $sbom = gh sbom -c -l | ConvertFrom-Json
+          $sbom | ConvertTo-Json -Depth 100 >>  >> sbom-cyclonedx.json
+          
+#################################################################################################
+# TODO: 
+   #- add the SBOM information to the release
+#################################################################################################
