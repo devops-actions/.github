@@ -1,0 +1,54 @@
+{
+  "github.com": {
+    "devops-actions": {
+      "load-runner-info": {
+        "previous": [],
+        "current": {
+          "score": 8.3,
+          "date": "2023-03-18",
+          "commit": "575c781f06ad9d0caf3c6729c5231187d1fcd49e"
+        }
+      },
+      "load-available-actions": {
+        "previous": [],
+        "current": {
+          "score": 8.1,
+          "date": "2023-03-18",
+          "commit": "9e3cc8ac2af508677767245f74fad5b28103ce02"
+        }
+      },
+      "issue-comment-tag": {
+        "previous": [],
+        "current": {
+          "score": 7.9,
+          "date": "2023-03-18",
+          "commit": "bb4e629d9cb8689bb0d92989c354078ca494a6ca"
+        }
+      },
+      "action-get-tag": {
+        "previous": [],
+        "current": {
+          "score": 7.6,
+          "date": "2023-03-18",
+          "commit": "e5798eb2098d5d2502de3249218488a2e58a7cb8"
+        }
+      },
+      "json-to-file": {
+        "previous": [],
+        "current": {
+          "score": 9.1,
+          "date": "2023-03-18",
+          "commit": "b751d521593f566188e2056b575165081244eb40"
+        }
+      },
+      "load-used-actions": {
+        "previous": [],
+        "current": {
+          "score": 8,
+          "date": "2023-03-18",
+          "commit": "d6cba4a8416f460240dc301f8018c703af86b647"
+        }
+      }
+    }
+  }
+}

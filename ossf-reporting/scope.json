@@ -1,0 +1,15 @@
+{
+  "github.com": {
+    "devops-actions": {
+      "included": [
+        "load-available-actions",
+        "action-get-tag",
+        "issue-comment-tag",
+        "load-used-actions",
+        "json-to-file",
+        "load-runner-info"
+      ],
+      "excluded": []
+    }
+  }
+}
