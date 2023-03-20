@@ -1,6 +1,6 @@
 name: Scorecards supply-chain security scan
 on:
-  workflow_run:
+  workflow_call:
     
 # Declare default GITHUB_TOKEN permissions as read only.
 permissions: read-all
