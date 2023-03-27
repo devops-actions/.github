@@ -34,18 +34,30 @@
         }
       },
       "json-to-file": {
-        "previous": [],
+        "previous": [
+          {
+            "score": 9.1,
+            "date": "2023-03-18",
+            "commit": "b751d521593f566188e2056b575165081244eb40"
+          }
+        ],
         "current": {
-          "score": 9.1,
-          "date": "2023-03-18",
-          "commit": "b751d521593f566188e2056b575165081244eb40"
+          "score": 8.6,
+          "date": "2023-03-25",
+          "commit": "47995a2bac3a117e515a05097e8e7916d49d9f25"
         }
       },
       "load-used-actions": {
-        "previous": [],
+        "previous": [
+          {
+            "score": 8,
+            "date": "2023-03-18",
+            "commit": "d6cba4a8416f460240dc301f8018c703af86b647"
+          }
+        ],
         "current": {
-          "score": 8,
-          "date": "2023-03-18",
+          "score": 7.5,
+          "date": "2023-03-25",
           "commit": "d6cba4a8416f460240dc301f8018c703af86b647"
         }
       }
