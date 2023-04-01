@@ -25,9 +25,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # shell script to use either secrets.GH_TOKEN or secrets.GITHUB_TOKEN depending on which is set
-          if [[] $GH_TOKEN ]]; then
+          if [[ $GH_TOKEN ]]; then
+            echo "Using GH_TOKEN"
             echo "token=$GH_TOKEN" > GITHUB_OUTPUT
           else 
+            echo "Using GITHUB_TOKEN"
             echo "token=$GITHUB_TOKEN" > GITHUB_OUTPUT
           fi
 
