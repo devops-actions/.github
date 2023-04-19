@@ -10,8 +10,8 @@ Reach out to Rob on [Twitter](https://twitter.com/RobBos81) or read more info on
 OSSF Scorecard overview for the repos:
 |Repo|Score|
 |---|---|
-|issue-comment-tag|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/issue-comment-tag/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/issue-comment-tag)|
-|json-to-file|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/json-to-file/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/json-to-file)|
-|load-available-actions|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-available-actions/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-available-actions)|
-|load-runner-info|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-runner-info/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-runner-info)|
-|load-used-actions|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-used-actions/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-used-actions)|
+|[issue-comment-tag](https://github.com/devops-actions/issue-comment-tag)|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/issue-comment-tag/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/issue-comment-tag)|
+|[json-to-file](https://github.com/devops-actions/json-to-file)|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/json-to-file/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/json-to-file)|
+|[load-available-actions](https://github.com/devops-actions/load-available-actions)|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-available-actions/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-available-actions)|
+|[load-runner-info](https://github.com/devops-actions/load-runner-info)|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-runner-info/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-runner-info)|
+|[load-used-actions](https://github.com/devops-actions/load-used-actions)|[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-used-actions/badge)](https://api.securityscorecards.dev/projects/github.com/devops-actions/load-used-actions)|
