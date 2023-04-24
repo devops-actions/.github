@@ -17,11 +17,16 @@
             "score": 7.9,
             "date": "2023-04-08",
             "commit": "6b0373c692f4377d5183f39fca0f6b499212bd70"
+          },
+          {
+            "score": 8.3,
+            "date": "2023-04-15",
+            "commit": "6b0373c692f4377d5183f39fca0f6b499212bd70"
           }
         ],
         "current": {
-          "score": 8.3,
-          "date": "2023-04-15",
+          "score": 7.9,
+          "date": "2023-04-22",
           "commit": "6b0373c692f4377d5183f39fca0f6b499212bd70"
         }
       },
@@ -55,11 +60,16 @@
             "score": 7.6,
             "date": "2023-04-08",
             "commit": "86a06a138159d9e130c7cad50027819651b5032c"
+          },
+          {
+            "score": 8,
+            "date": "2023-04-15",
+            "commit": "86a06a138159d9e130c7cad50027819651b5032c"
           }
         ],
         "current": {
-          "score": 8,
-          "date": "2023-04-15",
+          "score": 7.6,
+          "date": "2023-04-22",
           "commit": "86a06a138159d9e130c7cad50027819651b5032c"
         }
       },
@@ -79,11 +89,16 @@
             "score": 7.7,
             "date": "2023-04-08",
             "commit": "30d2219a0a29e9ab7482b12bbdff5ceba50c55ef"
+          },
+          {
+            "score": 8.2,
+            "date": "2023-04-15",
+            "commit": "4e13c4ea459efa2988a10d5ff0f252bb097929ef"
           }
         ],
         "current": {
-          "score": 8.2,
-          "date": "2023-04-15",
+          "score": 7.7,
+          "date": "2023-04-22",
           "commit": "4e13c4ea459efa2988a10d5ff0f252bb097929ef"
         }
       },
@@ -108,11 +123,16 @@
             "score": 8.6,
             "date": "2023-04-08",
             "commit": "5b48252a226562198baa212a97e6159ab3d5aea8"
+          },
+          {
+            "score": 9,
+            "date": "2023-04-15",
+            "commit": "5b48252a226562198baa212a97e6159ab3d5aea8"
           }
         ],
         "current": {
-          "score": 9,
-          "date": "2023-04-15",
+          "score": 8.6,
+          "date": "2023-04-22",
           "commit": "5b48252a226562198baa212a97e6159ab3d5aea8"
         }
       },
