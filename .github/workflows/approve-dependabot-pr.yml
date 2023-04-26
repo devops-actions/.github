@@ -45,7 +45,7 @@ jobs:
           
       - name: Show Dependabot metadata info
         run: |
-          echo "Found ecosystem: [${{ steps.metadata.outputs.ecosystem }}]"
+          echo "Found ecosystem: [${{ steps.metadata.outputs.package-ecosystem }}]"
           echo "Found update-type: [${{ steps.metadata.outputs.update-type }}]"
           
   dependabot-actions:
