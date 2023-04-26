@@ -19,6 +19,7 @@ jobs:
       pull-requests: read
     outputs:
       ecosystem: ${{ steps.dependabot-metadata.outputs.package-ecosystem }}
+      update-type: ${{ steps.dependabot-metadata.outputs.update-type }}
       token: ${{ steps.get-token.outputs.token }}
     steps:
       - name: Get correct token to use
@@ -51,28 +52,18 @@ jobs:
       pull-requests: write
       actions: write #the updates for this ecosystem will push to the .github/workflows folder
     steps:
-      - name: debug token
-        run: | 
-          echo "[${{ needs.dependabot-check.outputs.token }}]"
-          
-      - name: Load Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@4de7a6c08ce727a42e0adbbdc345f761a01240ce #v1.3.6
-        with:
-          github-token: ${{ needs.dependabot-check.outputs.token }}
-
       - name: Approve the PR
-        if:  steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        if:  needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ needs.dependabot-check.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ needs.dependabot-check.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   dependabot-other:
     runs-on: ubuntu-latest
@@ -83,25 +74,18 @@ jobs:
       pull-requests: write
       actions: read #the updates for this ecosystem will NOT push to the .github/workflows folder
     steps:
-          
-      - name: Load Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@4de7a6c08ce727a42e0adbbdc345f761a01240ce #v1.3.6
-        with:
-          github-token: ${{ needs.dependabot-check.outputs.token }}
-
       - name: Approve the PR
-        if:  steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        if:  needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ needs.dependabot-check.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ needs.dependabot-check.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   not-dependabot:
     runs-on: ubuntu-latest
