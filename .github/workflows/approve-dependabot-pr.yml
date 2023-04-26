@@ -13,7 +13,7 @@ permissions:
 jobs:
   dependabot-check:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: always() # this job needs to run because we use it as a required workflow
     permissions:
       contents: read
       pull-requests: read
@@ -23,6 +23,7 @@ jobs:
       token: ${{ steps.get-token.outputs.token }}
     steps:
       - name: Get correct token to use
+        if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
         id: get-token
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -38,15 +39,20 @@ jobs:
           fi
           
       - name: Load Dependabot metadata
+        if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
         id: metadata
         uses: dependabot/fetch-metadata@4de7a6c08ce727a42e0adbbdc345f761a01240ce #v1.3.6
         with:
           github-token: ${{ steps.get-token.outputs.token }}
           
       - name: Show Dependabot metadata info
+        if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
         run: |
           echo "Found ecosystem: [${{ steps.metadata.outputs.package-ecosystem }}]"
           echo "Found update-type: [${{ steps.metadata.outputs.update-type }}]"
+          
+      - name: Empty step so the job has something to do as it is used as a required workflow
+        run: echo "Not happy about it, but the job has to run"
           
   dependabot-actions:
     runs-on: ubuntu-latest
