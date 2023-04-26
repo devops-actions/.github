@@ -51,6 +51,9 @@ jobs:
       pull-requests: write
       actions: write #the updates for this ecosystem will push to the .github/workflows folder
     steps:
+      - name: debug token
+        run: | 
+          echo "[${{ needs.dependabot-check.outputs.token }}]"
           
       - name: Load Dependabot metadata
         id: metadata
