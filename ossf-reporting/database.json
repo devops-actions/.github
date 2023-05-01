@@ -36,12 +36,17 @@
             "score": 8.1,
             "date": "2023-03-18",
             "commit": "9e3cc8ac2af508677767245f74fad5b28103ce02"
+          },
+          {
+            "score": 7.1,
+            "date": "2023-04-01",
+            "commit": "b655616261311b700b7c851f90d0e64915e54aa9"
           }
         ],
         "current": {
-          "score": 7.1,
-          "date": "2023-04-01",
-          "commit": "b655616261311b700b7c851f90d0e64915e54aa9"
+          "score": 7,
+          "date": "2023-04-29",
+          "commit": "1d1f56ad3c09fd9f6c350eeffc9edd5963684a4f"
         }
       },
       "issue-comment-tag": {
