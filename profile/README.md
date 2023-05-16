@@ -5,7 +5,7 @@ DevOps-Actions is an organization by [@rajbos](https://github.com/rajbos) to hol
 |1|Internal Marketplace for GitHub Actions|[repo](https://github.com/rajbos/actions-marketplace)|
 |2|Request repo for validating and adding actions to the internal marketplace|[repo](https://github.com/rajbos/github-actions-requests)| 
 
-Reach out to Rob on [Twitter](https://twitter.com/RobBos81) or read more info on his blog [https://devopsjournal.io](https://devopsjournal.io).
+Reach out to Rob on [Mastodon](https://mstdn.social/@Rob_Bos) or read more info on his blog [https://devopsjournal.io](https://devopsjournal.io).
 
 OSSF Scorecard overview for the repos:
 |Repo|Score|
