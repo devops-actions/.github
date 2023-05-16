@@ -13,9 +13,9 @@ jobs:
        
        - name: Checkout Git repo manually
          run: |
-           mkdir npm-cli
-           cd npm-cli
-           git clone https://github.com/npm/cli.git
+           mkdir my-repo
+           cd my-repo
+           git clone https://github.com/devops-actions/.github.git
 
        - run: dotnet --version
 
