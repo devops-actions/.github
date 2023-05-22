@@ -119,12 +119,17 @@
             "score": 7.7,
             "date": "2023-04-22",
             "commit": "4e13c4ea459efa2988a10d5ff0f252bb097929ef"
+          },
+          {
+            "score": 7.8,
+            "date": "2023-05-06",
+            "commit": "d17aac219dd2d692ddc84a3c9b97b91346c60962"
           }
         ],
         "current": {
-          "score": 7.8,
-          "date": "2023-05-06",
-          "commit": "d17aac219dd2d692ddc84a3c9b97b91346c60962"
+          "score": 8.7,
+          "date": "2023-05-20",
+          "commit": "d74657e0e687a9fb1349a903c9db6afabde0b47c"
         }
       },
       "json-to-file": {
