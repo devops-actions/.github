@@ -56,8 +56,7 @@ jobs:
           
   dependabot-actions:
     runs-on: ubuntu-latest
-    needs: dependabot-check
-    if: github.event.pull_request.user.login == 'dependabot[bot]' || needs.dependabot-check.outputs.ecosystem == 'github-actions'
+    needs: dependabot-check    
     permissions:
       contents: write
       pull-requests: write
@@ -69,13 +68,14 @@ jobs:
           echo "Got update-type: [${{ needs.dependabot-check.outputs.update-type }}]"
           
       - name: Approve the PR
-        if: needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch'
+        if: (github.event.pull_request.user.login == 'dependabot[bot]' || needs.dependabot-check.outputs.ecosystem == 'github-actions') && (needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch')
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Enable auto-merge for Dependabot PRs
+        if: github.event.pull_request.user.login == 'dependabot[bot]' || needs.dependabot-check.outputs.ecosystem == 'github-actions'
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
