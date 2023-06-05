@@ -85,12 +85,17 @@
             "score": 7.7,
             "date": "2023-05-06",
             "commit": "60beb52536675342d882a121104f688be13ca9d0"
+          },
+          {
+            "score": 6.9,
+            "date": "2023-05-13",
+            "commit": "22a8ae9b9d3eb69d507306a57383cf06a2d80da2"
           }
         ],
         "current": {
-          "score": 6.9,
-          "date": "2023-05-13",
-          "commit": "22a8ae9b9d3eb69d507306a57383cf06a2d80da2"
+          "score": 7,
+          "date": "2023-06-03",
+          "commit": "0821c4d471e8886a70ea29831122664e9d836b99"
         }
       },
       "action-get-tag": {
@@ -192,12 +197,17 @@
             "score": 7.6,
             "date": "2023-04-08",
             "commit": "73b5a8d623b09274a6cb0b20e40a84acfba735b6"
+          },
+          {
+            "score": 7.9,
+            "date": "2023-05-13",
+            "commit": "d9e9e6dfd6b1859150590c9e057d4fc530c092bc"
           }
         ],
         "current": {
-          "score": 7.9,
-          "date": "2023-05-13",
-          "commit": "d9e9e6dfd6b1859150590c9e057d4fc530c092bc"
+          "score": 8,
+          "date": "2023-06-03",
+          "commit": "9fd25903f61114f57b4335df6fd66bf186e8ca00"
         }
       }
     }
