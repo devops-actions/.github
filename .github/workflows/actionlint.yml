@@ -16,5 +16,5 @@ jobs:
     - uses: actions/checkout@v3 # v3
 
     # run the actionlinter, will fail on errors
-    - uses: devops-actions/actionlint@v0.1.0 
+    - uses: devops-actions/actionlint@v0.1.1 
     
