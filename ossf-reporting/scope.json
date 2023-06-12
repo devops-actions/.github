@@ -7,7 +7,9 @@
         "issue-comment-tag",
         "load-used-actions",
         "json-to-file",
-        "load-runner-info"
+        "load-runner-info",
+        "action-template",
+        "actionlint"
       ],
       "excluded": []
     }
