@@ -226,10 +226,16 @@
         }
       },
       "actionlint": {
-        "previous": [],
+        "previous": [
+          {
+            "score": 4.8,
+            "date": "2023-06-10",
+            "commit": "99956e499555c4099b5b7c8c5de61e18f57c4cb4"
+          }
+        ],
         "current": {
-          "score": 4.8,
-          "date": "2023-06-10",
+          "score": 5.7,
+          "date": "2023-06-17",
           "commit": "99956e499555c4099b5b7c8c5de61e18f57c4cb4"
         }
       },
