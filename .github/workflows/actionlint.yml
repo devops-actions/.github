@@ -18,4 +18,6 @@ jobs:
     # run the actionlinter
     - uses: devops-actions/actionlint@c0ee017f8abef55d843a647cd737b87a1976eb69 # v0.1.1 
       continue-on-error: true
-    
+      
+    - if: failure()
+      run: echo "here"    
