@@ -174,12 +174,17 @@
             "score": 8.7,
             "date": "2023-05-20",
             "commit": "d74657e0e687a9fb1349a903c9db6afabde0b47c"
+          },
+          {
+            "score": 8.4,
+            "date": "2023-07-15",
+            "commit": "5e518133e65bbd50a8446e41380404d2231fb9be"
           }
         ],
         "current": {
-          "score": 8.4,
-          "date": "2023-07-15",
-          "commit": "5e518133e65bbd50a8446e41380404d2231fb9be"
+          "score": 8.7,
+          "date": "2023-07-29",
+          "commit": "99282d829ada57f34a92a98fad972d9f5a8f85cc"
         }
       },
       "json-to-file": {
@@ -290,6 +295,14 @@
           "score": 5.3,
           "date": "2023-06-10",
           "commit": "2d36c375d37dfe4b9bd08bacb5bae3728b201d2f"
+        }
+      },
+      "variable-substitution": {
+        "previous": [],
+        "current": {
+          "score": 6.4,
+          "date": "2023-07-27T23:03:09Z",
+          "commit": "397561a8b2ae6c6c057ee9653a34fac60992beb8"
         }
       }
     }

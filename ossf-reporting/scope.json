@@ -9,7 +9,8 @@
         "json-to-file",
         "load-runner-info",
         "action-template",
-        "actionlint"
+        "actionlint",
+        "variable-substitution"
       ],
       "excluded": []
     }
