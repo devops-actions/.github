@@ -301,12 +301,17 @@
             "score": 4.8,
             "date": "2023-06-10",
             "commit": "99956e499555c4099b5b7c8c5de61e18f57c4cb4"
+          },
+          {
+            "score": 5.7,
+            "date": "2023-06-17",
+            "commit": "99956e499555c4099b5b7c8c5de61e18f57c4cb4"
           }
         ],
         "current": {
-          "score": 5.7,
-          "date": "2023-06-17",
-          "commit": "99956e499555c4099b5b7c8c5de61e18f57c4cb4"
+          "score": 5.8,
+          "date": "2023-08-12",
+          "commit": "8edb50b2bc5b9a81a47ed53682b1c357111d5958"
         }
       },
       "action-template": {
