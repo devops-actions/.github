@@ -323,10 +323,16 @@
         }
       },
       "variable-substitution": {
-        "previous": [],
+        "previous": [
+          {
+            "score": 6.4,
+            "date": "2023-07-27T23:03:09Z",
+            "commit": "397561a8b2ae6c6c057ee9653a34fac60992beb8"
+          }
+        ],
         "current": {
-          "score": 6.4,
-          "date": "2023-07-27T23:03:09Z",
+          "score": 6.2,
+          "date": "2023-08-24T21:24:44Z",
           "commit": "397561a8b2ae6c6c057ee9653a34fac60992beb8"
         }
       }
