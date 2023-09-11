@@ -302,12 +302,17 @@
             "score": 8.1,
             "date": "2023-08-05",
             "commit": "de08575588aec9181d1540bdeefd0665b5aa4db5"
+          },
+          {
+            "score": 8.2,
+            "date": "2023-09-02",
+            "commit": "aa7338e068918d4285134128416309b925923e57"
           }
         ],
         "current": {
-          "score": 8.2,
-          "date": "2023-09-02",
-          "commit": "aa7338e068918d4285134128416309b925923e57"
+          "score": 7.9,
+          "date": "2023-09-09",
+          "commit": "52f280c999c35b32bccd70086fcd3119a554ebe8"
         }
       },
       "actionlint": {
@@ -321,12 +326,17 @@
             "score": 5.7,
             "date": "2023-06-17",
             "commit": "99956e499555c4099b5b7c8c5de61e18f57c4cb4"
+          },
+          {
+            "score": 5.8,
+            "date": "2023-08-12",
+            "commit": "8edb50b2bc5b9a81a47ed53682b1c357111d5958"
           }
         ],
         "current": {
-          "score": 5.8,
-          "date": "2023-08-12",
-          "commit": "8edb50b2bc5b9a81a47ed53682b1c357111d5958"
+          "score": 5.4,
+          "date": "2023-09-09",
+          "commit": "28b43a5ac6862b14beea46e7778beca072df155f"
         }
       },
       "action-template": {
