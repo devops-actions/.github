@@ -21,7 +21,7 @@ jobs:
       pull-requests: write
     steps:
       - name: 'Checkout Repository'
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.3.0
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v3.3.0
         
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@01bc87099ba56df1e897b6874784491ea6309bc4 # v3.1.4
