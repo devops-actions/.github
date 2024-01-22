@@ -10,7 +10,8 @@
         "load-runner-info",
         "action-template",
         "actionlint",
-        "variable-substitution"
+        "variable-substitution",
+        "docker-action-demo2"
       ],
       "excluded": []
     }

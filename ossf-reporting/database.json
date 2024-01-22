@@ -254,12 +254,17 @@
             "score": 8.8,
             "date": "2023-09-02",
             "commit": "550a33d3220aa561a05813d8c60e773d9a5f88da"
+          },
+          {
+            "score": 7.4,
+            "date": "2023-10-21",
+            "commit": "1aed6624f46b5a02207708d5f6384180fa0a29eb"
           }
         ],
         "current": {
-          "score": 7.4,
-          "date": "2023-10-21",
-          "commit": "1aed6624f46b5a02207708d5f6384180fa0a29eb"
+          "score": 7.2,
+          "date": "2024-01-20T02:06:32Z",
+          "commit": "42bc3fee93b72f952a03786946dcad17fe092612"
         }
       },
       "json-to-file": {
@@ -479,6 +484,14 @@
           "score": 6.9,
           "date": "2023-11-09T21:24:01Z",
           "commit": "8d813e9c8af54ba32fbfb3c9c4e0286b3b9573de"
+        }
+      },
+      "docker-action-demo2": {
+        "previous": [],
+        "current": {
+          "score": 3.2,
+          "date": "2024-01-15",
+          "commit": "769a89a797cab9d4e9970ab2577d577f35f57656"
         }
       }
     }
