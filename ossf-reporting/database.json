@@ -259,12 +259,17 @@
             "score": 7.4,
             "date": "2023-10-21",
             "commit": "1aed6624f46b5a02207708d5f6384180fa0a29eb"
+          },
+          {
+            "score": 7.2,
+            "date": "2024-01-20T02:06:32Z",
+            "commit": "42bc3fee93b72f952a03786946dcad17fe092612"
           }
         ],
         "current": {
-          "score": 7.2,
-          "date": "2024-01-20T02:06:32Z",
-          "commit": "42bc3fee93b72f952a03786946dcad17fe092612"
+          "score": 7,
+          "date": "2024-02-03T01:56:50Z",
+          "commit": "56d33bdcddd24e9beec484d6c904ecd67d7f18e7"
         }
       },
       "json-to-file": {
@@ -392,12 +397,17 @@
             "score": 7,
             "date": "2023-10-21",
             "commit": "96c513d2167b046375607bf046c75b6e3be1643e"
+          },
+          {
+            "score": 6.6,
+            "date": "2023-11-04T02:30:28Z",
+            "commit": "f2487b7e0dffd3f40460a57c376dcdfb3ae8b4b9"
           }
         ],
         "current": {
-          "score": 6.6,
-          "date": "2023-11-04T02:30:28Z",
-          "commit": "f2487b7e0dffd3f40460a57c376dcdfb3ae8b4b9"
+          "score": 6.5,
+          "date": "2024-02-03T02:26:56Z",
+          "commit": "49ad9cd702dec23ee747f38d5381a3faaca287b0"
         }
       },
       "actionlint": {
@@ -478,12 +488,17 @@
             "score": 6.2,
             "date": "2023-10-26T21:23:45Z",
             "commit": "413123478cfdef3b17f8d1f4f70ddef274d250b7"
+          },
+          {
+            "score": 6.9,
+            "date": "2023-11-09T21:24:01Z",
+            "commit": "8d813e9c8af54ba32fbfb3c9c4e0286b3b9573de"
           }
         ],
         "current": {
-          "score": 6.9,
-          "date": "2023-11-09T21:24:01Z",
-          "commit": "8d813e9c8af54ba32fbfb3c9c4e0286b3b9573de"
+          "score": 6.3,
+          "date": "2024-02-04T21:03:36Z",
+          "commit": "ae7b1f3676ae374dc70282e6b9650bc50b611222"
         }
       },
       "docker-action-demo2": {
