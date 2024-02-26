@@ -402,12 +402,17 @@
             "score": 6.6,
             "date": "2023-11-04T02:30:28Z",
             "commit": "f2487b7e0dffd3f40460a57c376dcdfb3ae8b4b9"
+          },
+          {
+            "score": 6.5,
+            "date": "2024-02-03T02:26:56Z",
+            "commit": "49ad9cd702dec23ee747f38d5381a3faaca287b0"
           }
         ],
         "current": {
-          "score": 6.5,
-          "date": "2024-02-03T02:26:56Z",
-          "commit": "49ad9cd702dec23ee747f38d5381a3faaca287b0"
+          "score": 6.6,
+          "date": "2024-02-24T02:26:51Z",
+          "commit": "35daab0974e67ae4cf7e43eaf5ec9495846f14aa"
         }
       },
       "actionlint": {
