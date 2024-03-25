@@ -466,12 +466,17 @@
             "score": 4.7,
             "date": "2023-12-02T02:05:48Z",
             "commit": "b555ae3ad0fc38e3e8a0f8201125dcae847167eb"
+          },
+          {
+            "score": 5.2,
+            "date": "2024-03-16T02:01:33Z",
+            "commit": "d2230eaa0f82c414dbda9890fb2f529a5d144342"
           }
         ],
         "current": {
-          "score": 5.2,
-          "date": "2024-03-16T02:01:33Z",
-          "commit": "d2230eaa0f82c414dbda9890fb2f529a5d144342"
+          "score": 5.8,
+          "date": "2024-03-23T02:02:35Z",
+          "commit": "d2cc0089b96a396ad8544fcacfe1b8489a7f9550"
         }
       },
       "action-template": {
