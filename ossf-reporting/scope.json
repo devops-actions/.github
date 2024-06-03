@@ -11,7 +11,8 @@
         "action-template",
         "actionlint",
         "variable-substitution",
-        "docker-action-demo2"
+        "docker-action-demo2",
+        "azure-appservice-settings"
       ],
       "excluded": []
     }
