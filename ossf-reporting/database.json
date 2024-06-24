@@ -72,12 +72,17 @@
             "score": 7.3,
             "date": "2024-06-08T02:16:31Z",
             "commit": "0ac381539dd076ba4c760bbf7652e510c99a4230"
+          },
+          {
+            "score": 7.4,
+            "date": "2024-06-15T02:18:18Z",
+            "commit": "34dcccdc9208bdfc8f91e596993778b8d8ebe4ae"
           }
         ],
         "current": {
-          "score": 7.4,
-          "date": "2024-06-15T02:18:18Z",
-          "commit": "34dcccdc9208bdfc8f91e596993778b8d8ebe4ae"
+          "score": 7.6,
+          "date": "2024-06-22T02:11:56Z",
+          "commit": "a3e0f7583a1ac924320e413fccece4b7eeb8a595"
         }
       },
       "load-available-actions": {
@@ -240,12 +245,17 @@
             "score": 7.9,
             "date": "2024-06-08T02:12:09Z",
             "commit": "de7964c3f8c8ccf7dc30d99d06f87261a8c08ceb"
+          },
+          {
+            "score": 7.8,
+            "date": "2024-06-15T02:13:58Z",
+            "commit": "de7964c3f8c8ccf7dc30d99d06f87261a8c08ceb"
           }
         ],
         "current": {
-          "score": 7.8,
-          "date": "2024-06-15T02:13:58Z",
-          "commit": "de7964c3f8c8ccf7dc30d99d06f87261a8c08ceb"
+          "score": 7.9,
+          "date": "2024-06-22T02:11:12Z",
+          "commit": "70b4a9de3cb91a370f2b5a88c4055a10d28c1934"
         }
       },
       "action-get-tag": {
@@ -408,12 +418,17 @@
             "score": 7.6,
             "date": "2024-06-08T02:11:47Z",
             "commit": "6d0814bca866088282da882b83fc2fdf867296de"
+          },
+          {
+            "score": 7.5,
+            "date": "2024-06-15T02:12:23Z",
+            "commit": "6d0814bca866088282da882b83fc2fdf867296de"
           }
         ],
         "current": {
-          "score": 7.5,
-          "date": "2024-06-15T02:12:23Z",
-          "commit": "6d0814bca866088282da882b83fc2fdf867296de"
+          "score": 8,
+          "date": "2024-06-22T02:10:49Z",
+          "commit": "6467f4b46a4cdd2f389b83ead5036a1ccac4f2d4"
         }
       },
       "load-used-actions": {
@@ -566,11 +581,16 @@
             "score": 5.6,
             "date": "2024-05-25T02:08:46Z",
             "commit": "d2cc0089b96a396ad8544fcacfe1b8489a7f9550"
+          },
+          {
+            "score": 6.2,
+            "date": "2024-06-08T02:12:06Z",
+            "commit": "87bbec3a87010b8f27fedf2784f2f88eb0dab84d"
           }
         ],
         "current": {
-          "score": 6.2,
-          "date": "2024-06-08T02:12:06Z",
+          "score": 6,
+          "date": "2024-06-22T02:11:08Z",
           "commit": "87bbec3a87010b8f27fedf2784f2f88eb0dab84d"
         }
       },
@@ -618,12 +638,17 @@
             "score": 6.3,
             "date": "2024-02-04T21:03:36Z",
             "commit": "ae7b1f3676ae374dc70282e6b9650bc50b611222"
+          },
+          {
+            "score": 6.9,
+            "date": "2024-05-02T21:23:40Z",
+            "commit": "9f2b696644ba4142c140475ef1a60d788492f6bb"
           }
         ],
         "current": {
-          "score": 6.9,
-          "date": "2024-05-02T21:23:40Z",
-          "commit": "9f2b696644ba4142c140475ef1a60d788492f6bb"
+          "score": 7.6,
+          "date": "2024-06-20T21:26:01Z",
+          "commit": "c1815ad50b637eb0ccfa9576ddbe9d91ae8255bb"
         }
       },
       "docker-action-demo2": {
