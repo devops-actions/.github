@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
       
       - name: OpenSSF Scorecard Monitor
-        uses: UlisesGascon/openssf-scorecard-monitor@v2.0.0-beta3
+        uses: ossf/scorecard-monitor@a3a9c4cfa0684480ec5f86fa178fc22c4394b69e # v2.0.0-beta8
         with:
           scope: ossf-reporting/scope.json
           database: ossf-reporting/database.json
