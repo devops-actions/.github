@@ -527,12 +527,17 @@
             "score": 5.8,
             "date": "2024-04-06T02:29:34Z",
             "commit": "35daab0974e67ae4cf7e43eaf5ec9495846f14aa"
+          },
+          {
+            "score": 7.1,
+            "date": "2024-07-06T02:39:38Z",
+            "commit": "0c64ac34d86be04edb1e98ec0bb89e6e43dd7201"
           }
         ],
         "current": {
-          "score": 7.1,
-          "date": "2024-07-06T02:39:38Z",
-          "commit": "0c64ac34d86be04edb1e98ec0bb89e6e43dd7201"
+          "score": 7,
+          "date": "2024-07-13T02:42:20Z",
+          "commit": "6c4031a3feb83cfbb60c4d31d5af9929ad342190"
         }
       },
       "actionlint": {
