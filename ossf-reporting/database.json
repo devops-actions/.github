@@ -191,12 +191,17 @@
             "score": 7.9,
             "date": "2024-08-24T02:26:02Z",
             "commit": "6f7c82a38e3cf93aad25b1e1243a3320e710e9af"
+          },
+          {
+            "score": 7.8,
+            "date": "2024-11-16T02:43:58Z",
+            "commit": "81522cd4f76833ec29b396cd1d1d5007a367c99e"
           }
         ],
         "current": {
-          "score": 7.8,
-          "date": "2024-11-16T02:43:58Z",
-          "commit": "81522cd4f76833ec29b396cd1d1d5007a367c99e"
+          "score": 7.9,
+          "date": "2025-01-04T02:35:45Z",
+          "commit": "e598f2861a345809b0413c689a9b00f5ec2ad0bc"
         }
       },
       "issue-comment-tag": {
@@ -409,12 +414,17 @@
             "score": 8,
             "date": "2024-11-02T02:31:32Z",
             "commit": "30fc2b27526c21427089b8e059c7cb89a3cd091f"
+          },
+          {
+            "score": 8.2,
+            "date": "2024-11-09T02:27:15Z",
+            "commit": "8ceaa340e254160d84559a143ff79f236658546b"
           }
         ],
         "current": {
-          "score": 8.2,
-          "date": "2024-11-09T02:27:15Z",
-          "commit": "8ceaa340e254160d84559a143ff79f236658546b"
+          "score": 8.1,
+          "date": "2025-01-04T02:30:01Z",
+          "commit": "3a492bc59fd26f3c3b63273bee4e01ea6fbd764c"
         }
       },
       "json-to-file": {
