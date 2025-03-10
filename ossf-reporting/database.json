@@ -429,12 +429,17 @@
             "score": 7.6,
             "date": "2025-02-01T02:32:10Z",
             "commit": "3a492bc59fd26f3c3b63273bee4e01ea6fbd764c"
+          },
+          {
+            "score": 7.7,
+            "date": "2025-02-08T02:27:08Z",
+            "commit": "a31b3a26c4409e47d057bd3aa778adb764ba3065"
           }
         ],
         "current": {
-          "score": 7.7,
-          "date": "2025-02-08T02:27:08Z",
-          "commit": "a31b3a26c4409e47d057bd3aa778adb764ba3065"
+          "score": 8.4,
+          "date": "2025-03-08T02:06:32Z",
+          "commit": "52aa34b6496726a7a477881854f375221de067b4"
         }
       },
       "json-to-file": {
