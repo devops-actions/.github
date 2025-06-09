@@ -97,12 +97,17 @@
             "score": 8,
             "date": "2024-09-07T02:29:56Z",
             "commit": "970231d88a3231d346159af3e9b7b5ad471eb010"
+          },
+          {
+            "score": 7.9,
+            "date": "2024-11-16T02:43:02Z",
+            "commit": "24af879e34e18ccb8f0b0725ec31929222d8a528"
           }
         ],
         "current": {
-          "score": 7.9,
-          "date": "2024-11-16T02:43:02Z",
-          "commit": "24af879e34e18ccb8f0b0725ec31929222d8a528"
+          "score": 7.8,
+          "date": "2025-06-07T23:32:07Z",
+          "commit": "a447d84a64961be18633ca7572b09c1c7ac1bc6e"
         }
       },
       "load-available-actions": {
@@ -449,12 +454,17 @@
             "score": 8.4,
             "date": "2025-03-08T02:06:32Z",
             "commit": "52aa34b6496726a7a477881854f375221de067b4"
+          },
+          {
+            "score": 8.2,
+            "date": "2025-05-31T02:51:16Z",
+            "commit": "b8e9971f3d2087847233257621b450327ed28bfa"
           }
         ],
         "current": {
-          "score": 8.2,
-          "date": "2025-05-31T02:51:16Z",
-          "commit": "b8e9971f3d2087847233257621b450327ed28bfa"
+          "score": 8.4,
+          "date": "2025-06-07T02:54:00Z",
+          "commit": "8bbef881324aa60f826b2760ff66341cabcd61fb"
         }
       },
       "json-to-file": {
@@ -945,12 +955,17 @@
             "score": 7.9,
             "date": "2025-03-15T02:42:05Z",
             "commit": "2b71d4cb4f848eff6cd36c435dc640743801e6ca"
+          },
+          {
+            "score": 7.5,
+            "date": "2025-05-31T03:00:47Z",
+            "commit": "d7921a8be0c6a2178aa92af6268bbaa773a5bd76"
           }
         ],
         "current": {
-          "score": 7.5,
-          "date": "2025-05-31T03:00:47Z",
-          "commit": "d7921a8be0c6a2178aa92af6268bbaa773a5bd76"
+          "score": 7.9,
+          "date": "2025-06-07T03:04:04Z",
+          "commit": "2d7624f90c94609de7929c90ad4bb80bcb17a0b0"
         }
       }
     }
