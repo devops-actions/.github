@@ -13,7 +13,7 @@ jobs:
       pull-requests: write
     steps: 
     # checkout the source code to analyze
-    - uses: actions/checkout@v4 # v3
+    - uses: actions/checkout@v6 # v3
 
     # run the actionlinter
     - uses: devops-actions/actionlint@467e2ce19b2310e93c9ffa0b50fe31f86b5a7f23 # v0.1.10
