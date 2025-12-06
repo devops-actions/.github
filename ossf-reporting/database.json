@@ -142,12 +142,17 @@
             "score": 7.6,
             "date": "2025-11-15T02:52:25Z",
             "commit": "0b191c63f349eb435809f08946056619ec137b62"
+          },
+          {
+            "score": 7.4,
+            "date": "2025-11-22T02:49:59Z",
+            "commit": "a73eec6ec4c98233352f6defb733465bf7a13448"
           }
         ],
         "current": {
-          "score": 7.4,
-          "date": "2025-11-22T02:49:59Z",
-          "commit": "a73eec6ec4c98233352f6defb733465bf7a13448"
+          "score": 7.3,
+          "date": "2025-12-06T18:37:29Z",
+          "commit": "f590d317942470d66f2874c9324e55673265abc3"
         }
       },
       "load-available-actions": {
@@ -281,12 +286,17 @@
             "score": 6.9,
             "date": "2025-11-15T02:53:18Z",
             "commit": "c57f17ba3ecbe51625b77dbd5bdfa2c8f0914ea0"
+          },
+          {
+            "score": 7.3,
+            "date": "2025-11-23T21:56:38Z",
+            "commit": "de2e48760d65f845be546caf7b2200ef0d97cc5e"
           }
         ],
         "current": {
-          "score": 7.3,
-          "date": "2025-11-23T21:56:38Z",
-          "commit": "de2e48760d65f845be546caf7b2200ef0d97cc5e"
+          "score": 8.1,
+          "date": "2025-12-06T18:30:35Z",
+          "commit": "77f6fc66a71ecc2a702350432079588799ed296f"
         }
       },
       "issue-comment-tag": {
@@ -420,12 +430,17 @@
             "score": 7.5,
             "date": "2025-11-15T02:51:33Z",
             "commit": "ae0e769c3488a8c6f36b7f054797df7c2a26615c"
+          },
+          {
+            "score": 7.7,
+            "date": "2025-11-22T02:49:12Z",
+            "commit": "c4102504de2d68a81313aca74527fb81167ae613"
           }
         ],
         "current": {
-          "score": 7.7,
-          "date": "2025-11-22T02:49:12Z",
-          "commit": "c4102504de2d68a81313aca74527fb81167ae613"
+          "score": 7,
+          "date": "2025-12-06T18:42:17Z",
+          "commit": "e326bd712a103ef9ba2ab132de87e4830fc710bf"
         }
       },
       "action-get-tag": {
@@ -733,12 +748,17 @@
             "score": 7.3,
             "date": "2025-11-15T02:51:09Z",
             "commit": "800534a11e7e776098279a8deb90c14daa963510"
+          },
+          {
+            "score": 7.4,
+            "date": "2025-11-22T02:48:57Z",
+            "commit": "e031003ae42e5db36e70424d4cdd609b325009ee"
           }
         ],
         "current": {
-          "score": 7.4,
-          "date": "2025-11-22T02:48:57Z",
-          "commit": "e031003ae42e5db36e70424d4cdd609b325009ee"
+          "score": 6.6,
+          "date": "2025-12-06T17:32:17Z",
+          "commit": "032388684ecda3509eeb49761113d490b7e23899"
         }
       },
       "load-used-actions": {
@@ -867,12 +887,17 @@
             "score": 7.4,
             "date": "2025-08-02T03:40:43Z",
             "commit": "0e1d4b0b86bac168954942bae6d6eb64977d019d"
+          },
+          {
+            "score": 7.3,
+            "date": "2025-10-04T03:01:50Z",
+            "commit": "0e17e80c6b65dc379b19acac56793464c90cd77a"
           }
         ],
         "current": {
-          "score": 7.3,
-          "date": "2025-10-04T03:01:50Z",
-          "commit": "0e17e80c6b65dc379b19acac56793464c90cd77a"
+          "score": 6.5,
+          "date": "2025-12-06T18:23:32Z",
+          "commit": "2792f47e867b03d6483a8479af5ed19fb6f675cc"
         }
       },
       "actionlint": {
@@ -1046,12 +1071,17 @@
             "score": 8.3,
             "date": "2025-11-15T02:51:26Z",
             "commit": "b37d855189cbf964ffe5a3b0cdd788de6eee3a55"
+          },
+          {
+            "score": 8.8,
+            "date": "2025-11-22T02:49:07Z",
+            "commit": "467e2ce19b2310e93c9ffa0b50fe31f86b5a7f23"
           }
         ],
         "current": {
-          "score": 8.8,
-          "date": "2025-11-22T02:49:07Z",
-          "commit": "467e2ce19b2310e93c9ffa0b50fe31f86b5a7f23"
+          "score": 8,
+          "date": "2025-12-06T18:14:07Z",
+          "commit": "6e7e6cc994ef264e2addb5708a093f9fdf771d2d"
         }
       },
       "action-template": {
