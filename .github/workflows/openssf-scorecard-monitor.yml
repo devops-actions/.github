@@ -27,13 +27,16 @@ jobs:
         run: |
           # Get all open issues with the title "OpenSSF Scorecard Report Updated!"
           echo "Searching for old OpenSSF Scorecard Report issues..."
-          issue_numbers=$(gh issue list --state open --search "OpenSSF Scorecard Report Updated! in:title" --json number --jq '.[].number')
+          issue_numbers=$(gh issue list --state open --search "\"OpenSSF Scorecard Report Updated!\" in:title" --json number --jq '.[].number')
           
           if [ -n "$issue_numbers" ]; then
-            echo "Found issues to close: $issue_numbers"
+            echo "Found issues to close:"
+            echo "$issue_numbers"
             while IFS= read -r issue_number; do
-              echo "Closing issue #$issue_number"
-              gh issue close "$issue_number" --comment "Closing this report as a new OpenSSF Scorecard report has been generated."
+              if [ -n "$issue_number" ]; then
+                echo "Closing issue #$issue_number"
+                gh issue close "$issue_number" --comment "Closing this report as a new OpenSSF Scorecard report has been generated."
+              fi
             done <<< "$issue_numbers"
           else
             echo "No old issues found to close."
