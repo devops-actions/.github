@@ -21,6 +21,24 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       
+      - name: Close old OpenSSF Scorecard Report issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get all open issues with the title "OpenSSF Scorecard Report Updated!"
+          echo "Searching for old OpenSSF Scorecard Report issues..."
+          issue_numbers=$(gh issue list --state open --search "OpenSSF Scorecard Report Updated! in:title" --json number --jq '.[].number')
+          
+          if [ -n "$issue_numbers" ]; then
+            echo "Found issues to close: $issue_numbers"
+            while IFS= read -r issue_number; do
+              echo "Closing issue #$issue_number"
+              gh issue close "$issue_number" --comment "Closing this report as a new OpenSSF Scorecard report has been generated."
+            done <<< "$issue_numbers"
+          else
+            echo "No old issues found to close."
+          fi
+      
       - name: OpenSSF Scorecard Monitor
         uses: ossf/scorecard-monitor@a3a9c4cfa0684480ec5f86fa178fc22c4394b69e # v2.0.0-beta8
         with:
