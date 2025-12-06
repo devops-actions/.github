@@ -30,8 +30,8 @@ jobs:
       - uses: devops-actions/issue-comment-tag@ec5e2b8d5f031330ff19bf4ee5b5252b1176995a # v0.1.8
         with:
           team: ${{ inputs.tag_team }}
-          issue: ${{ input.issue }}
-          pr: ${{ input.pr }}
+          issue: ${{ inputs.issue }}
+          pr: ${{ inputs.pr }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.token }}
