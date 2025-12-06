@@ -9,6 +9,12 @@ on:
       tag_team:
         required: true
         type: string
+      issue: 
+        required: false
+        type: string
+      pr: 
+        required: false
+        type: string
     secrets:
       token:
         required: true
@@ -24,8 +30,8 @@ jobs:
       - uses: devops-actions/issue-comment-tag@ec5e2b8d5f031330ff19bf4ee5b5252b1176995a # v0.1.8
         with:
           team: ${{ inputs.tag_team }}
-          issue: ${{ github.event.issue.number }}
-          pr: ${{ github.event.pull_request.number }}
+          issue: ${{ input.issue }}
+          pr: ${{ input.pr }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.token }}
