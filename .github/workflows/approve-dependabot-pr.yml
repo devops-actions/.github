@@ -30,12 +30,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # shell script to use either secrets.GH_TOKEN or secrets.GITHUB_TOKEN depending on which is set
-          if [[ $GH_TOKEN ]]; then
+          if [[ "$GH_TOKEN" ]]; then
             echo "Using GH_TOKEN"
-            echo "token=$GH_TOKEN" > $GITHUB_OUTPUT
+            echo "token=$GH_TOKEN" > "$GITHUB_OUTPUT"
           else 
             echo "Using GITHUB_TOKEN"
-            echo "token=$GITHUB_TOKEN" > $GITHUB_OUTPUT
+            echo "token=$GITHUB_TOKEN" > "$GITHUB_OUTPUT"
           fi
           
       - name: Load Dependabot metadata
@@ -110,4 +110,4 @@ jobs:
     steps:
       - name: Empty step
         if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
-        run: echo "Hello user! We needed a job to run in this required workflow, or it prohibits merging" | tee $GITHUB_STEP_SUMMARY
+        run: echo "Hello user! We needed a job to run in this required workflow, or it prohibits merging" | tee "$GITHUB_STEP_SUMMARY"
