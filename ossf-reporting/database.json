@@ -753,12 +753,17 @@
             "score": 7.4,
             "date": "2025-11-22T02:48:57Z",
             "commit": "e031003ae42e5db36e70424d4cdd609b325009ee"
+          },
+          {
+            "score": 6.6,
+            "date": "2025-12-06T17:32:17Z",
+            "commit": "032388684ecda3509eeb49761113d490b7e23899"
           }
         ],
         "current": {
-          "score": 6.6,
-          "date": "2025-12-06T17:32:17Z",
-          "commit": "032388684ecda3509eeb49761113d490b7e23899"
+          "score": 8.3,
+          "date": "2025-12-06T23:46:23Z",
+          "commit": "3aa4b5e74fa6721eb545f388de9556f33909a662"
         }
       },
       "load-used-actions": {
@@ -892,12 +897,17 @@
             "score": 7.3,
             "date": "2025-10-04T03:01:50Z",
             "commit": "0e17e80c6b65dc379b19acac56793464c90cd77a"
+          },
+          {
+            "score": 6.5,
+            "date": "2025-12-06T18:23:32Z",
+            "commit": "2792f47e867b03d6483a8479af5ed19fb6f675cc"
           }
         ],
         "current": {
-          "score": 6.5,
-          "date": "2025-12-06T18:23:32Z",
-          "commit": "2792f47e867b03d6483a8479af5ed19fb6f675cc"
+          "score": 7.7,
+          "date": "2025-12-06T21:32:19Z",
+          "commit": "982c77c0a1f89964fa51e219c72bc592469c11d4"
         }
       },
       "actionlint": {
@@ -1265,12 +1275,25 @@
             "score": 7,
             "date": "2025-12-06T02:55:49Z",
             "commit": "664a04884f8d3b7138617c2b097ee5edeaba91b0"
+          },
+          {
+            "score": 6.2,
+            "date": "2025-12-06T14:24:19Z",
+            "commit": "5ecd07520cbd88fab2c14d81f0c15cd275afe6b2"
           }
         ],
         "current": {
+          "score": 7.1,
+          "date": "2025-12-06T22:34:23Z",
+          "commit": "5a0cb1e01bdc0dd3991ff05888ccf68de4107431"
+        }
+      },
+      "github-copilot-pr-analysis": {
+        "previous": [],
+        "current": {
           "score": 6.2,
-          "date": "2025-12-06T14:24:19Z",
-          "commit": "5ecd07520cbd88fab2c14d81f0c15cd275afe6b2"
+          "date": "2025-12-06T22:11:43Z",
+          "commit": "e41f6e160e6bc4fd654a88a796ba3c56d53ac622"
         }
       }
     }

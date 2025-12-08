@@ -12,7 +12,8 @@
         "actionlint",
         "variable-substitution",
         "docker-action-demo2",
-        "azure-appservice-settings"
+        "azure-appservice-settings",
+        "github-copilot-pr-analysis"
       ],
       "excluded": []
     }
