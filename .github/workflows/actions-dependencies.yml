@@ -19,6 +19,6 @@ jobs:
       id-token: write # Required for dependency submission
     steps:
       - uses: actions/checkout@v4
-      - uses: jessehouwing/actions-dependency-submission@v0.0.1
+      - uses: jessehouwing/actions-dependency-submission@v1
         with:
           token: ${{ secrets.token }}
