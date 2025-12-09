@@ -11,6 +11,9 @@ on:
     secrets:
       token:
         required: true
+permissions:
+  contents: read
+
 jobs:
   submit-dependencies:
     runs-on: ubuntu-latest
@@ -18,7 +21,12 @@ jobs:
       contents: write # Required to read workflow files
       id-token: write # Required for dependency submission
     steps:
-      - uses: actions/checkout@v6
-      - uses: jessehouwing/actions-dependency-submission@v1
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: jessehouwing/actions-dependency-submission@32297473184598876ca7b570005657d88364d04b # v1.0.0
         with:
           token: ${{ secrets.token }}

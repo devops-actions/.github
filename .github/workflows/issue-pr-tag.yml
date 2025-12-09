@@ -19,6 +19,9 @@ on:
       token:
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   notify:
     if: ${{ github.repository_owner == inputs.org_name }}
@@ -27,6 +30,11 @@ jobs:
       issues: write
       pull-requests: write
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
+        with:
+          egress-policy: audit
+
       - uses: devops-actions/issue-comment-tag@ec5e2b8d5f031330ff19bf4ee5b5252b1176995a # v0.1.8
         with:
           team: ${{ inputs.tag_team }}
