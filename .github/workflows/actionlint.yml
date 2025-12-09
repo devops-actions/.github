@@ -3,6 +3,9 @@ on:
   pull_request:
     branches: main
     
+permissions:
+  contents: read
+
 jobs:
   run-actionlint:
     runs-on: ubuntu-latest
@@ -13,7 +16,12 @@ jobs:
       pull-requests: write
     steps: 
     # checkout the source code to analyze
-    - uses: actions/checkout@v6 # v3
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@df199fb7be9f65074067a9eb93f12bb4c5547cf2 # v2.13.3
+      with:
+        egress-policy: audit
+
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
     # run the actionlinter
     - uses: devops-actions/actionlint@467e2ce19b2310e93c9ffa0b50fe31f86b5a7f23 # v0.1.10
