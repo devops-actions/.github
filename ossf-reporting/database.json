@@ -758,12 +758,17 @@
             "score": 6.6,
             "date": "2025-12-06T17:32:17Z",
             "commit": "032388684ecda3509eeb49761113d490b7e23899"
+          },
+          {
+            "score": 8.3,
+            "date": "2025-12-06T23:46:23Z",
+            "commit": "3aa4b5e74fa6721eb545f388de9556f33909a662"
           }
         ],
         "current": {
-          "score": 8.3,
-          "date": "2025-12-06T23:46:23Z",
-          "commit": "3aa4b5e74fa6721eb545f388de9556f33909a662"
+          "score": 8.4,
+          "date": "2025-12-13T02:58:54Z",
+          "commit": "4e3937e8c783208ff53dd1d0f56b9b4f12f02cb0"
         }
       },
       "load-used-actions": {
@@ -1289,11 +1294,17 @@
         }
       },
       "github-copilot-pr-analysis": {
-        "previous": [],
+        "previous": [
+          {
+            "score": 6.2,
+            "date": "2025-12-06T22:11:43Z",
+            "commit": "e41f6e160e6bc4fd654a88a796ba3c56d53ac622"
+          }
+        ],
         "current": {
-          "score": 6.2,
-          "date": "2025-12-06T22:11:43Z",
-          "commit": "e41f6e160e6bc4fd654a88a796ba3c56d53ac622"
+          "score": 6.3,
+          "date": "2025-12-13T02:56:36Z",
+          "commit": "29137abb862d4166f34661fecba282d2aef01ee1"
         }
       }
     }
