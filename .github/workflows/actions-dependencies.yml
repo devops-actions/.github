@@ -11,6 +11,10 @@ on:
     secrets:
       token:
         required: true
+        
+  push:
+    branches: main
+    
 permissions:
   contents: read
 
