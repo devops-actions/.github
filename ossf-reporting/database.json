@@ -291,12 +291,17 @@
             "score": 7.3,
             "date": "2025-11-23T21:56:38Z",
             "commit": "de2e48760d65f845be546caf7b2200ef0d97cc5e"
+          },
+          {
+            "score": 8.1,
+            "date": "2025-12-06T18:30:35Z",
+            "commit": "77f6fc66a71ecc2a702350432079588799ed296f"
           }
         ],
         "current": {
-          "score": 8.1,
-          "date": "2025-12-06T18:30:35Z",
-          "commit": "77f6fc66a71ecc2a702350432079588799ed296f"
+          "score": 8.2,
+          "date": "2025-12-27T19:11:44Z",
+          "commit": "c8e41badc264f960a5af0047c349ac7a3b8b93e0"
         }
       },
       "issue-comment-tag": {
