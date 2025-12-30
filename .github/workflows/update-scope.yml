@@ -40,6 +40,10 @@ jobs:
         run: |
           node .github/scripts/transform-to-scope.js actions.json ossf-reporting/scope.json
 
+      - name: Remove the actions.json
+        run: |
+          rm actions.json
+
       - name: Check for changes
         id: check-changes
         run: |
