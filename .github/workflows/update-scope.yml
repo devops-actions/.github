@@ -42,7 +42,7 @@ jobs:
 
       - name: Remove the actions.json
         run: |
-          rm -rf actions.json
+          rm actions.json
 
       - name: Check for changes
         id: check-changes
