@@ -2,18 +2,16 @@
   "github.com": {
     "devops-actions": {
       "included": [
-        "load-available-actions",
         "action-get-tag",
-        "issue-comment-tag",
-        "load-used-actions",
-        "json-to-file",
-        "load-runner-info",
-        "action-template",
         "actionlint",
-        "variable-substitution",
-        "docker-action-demo2",
         "azure-appservice-settings",
-        "github-copilot-pr-analysis"
+        "github-copilot-pr-analysis",
+        "issue-comment-tag",
+        "json-to-file",
+        "load-available-actions",
+        "load-runner-info",
+        "load-used-actions",
+        "variable-substitution"
       ],
       "excluded": []
     }
