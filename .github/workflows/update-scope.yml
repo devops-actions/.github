@@ -40,11 +40,7 @@ jobs:
         run: |
           node .github/scripts/transform-to-scope.js actions.json ossf-reporting/scope.json
 
-      - name: Remove the actions.json
-        run: |
-          rm actions.json
-
-      - name: Check for changes
+      - name: Check for changes in the scope file
         id: check-changes
         run: |
           if git diff --quiet ossf-reporting/scope.json; then
@@ -66,6 +62,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'chore: update OSSF scorecard scope with discovered actions'
           title: 'chore: Update OSSF Scorecard Scope'
+          # only update the scope file
+          add-paths: ossf-reporting/scope.json
           body: |
             ## Automated Scope Update
             
