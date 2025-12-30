@@ -35,8 +35,6 @@ jobs:
           PAT: ${{ secrets.GITHUB_TOKEN }}
           organization: devops-actions
           outputFilename: actions.json
-          scanForWorkflows: true
-          includePrivate: false
 
       - name: Transform to scope.json format
         run: |
