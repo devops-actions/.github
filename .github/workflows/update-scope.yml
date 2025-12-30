@@ -3,7 +3,12 @@ name: Update OSSF Scorecard Scope
 on:
   schedule:
     - cron: '0 0 * * 1' # Weekly on Monday
+    
   workflow_dispatch:
+
+  push:
+    paths:
+      - .github/workflows/update-scope.yml
 
 permissions:
   contents: read
