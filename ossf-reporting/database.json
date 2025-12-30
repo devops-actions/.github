@@ -599,12 +599,17 @@
             "score": 8.1,
             "date": "2025-11-01T02:51:38Z",
             "commit": "03a56d54abc95203d4922ee7bae984783b5733b1"
+          },
+          {
+            "score": 8.2,
+            "date": "2025-11-08T02:42:18Z",
+            "commit": "0cb6a3e357326e71cdfd93705dcf92c202c4743b"
           }
         ],
         "current": {
-          "score": 8.2,
-          "date": "2025-11-08T02:42:18Z",
-          "commit": "0cb6a3e357326e71cdfd93705dcf92c202c4743b"
+          "score": 7.2,
+          "date": "2025-12-30T19:19:23Z",
+          "commit": "9bc5c8fa153cc69a18b97016d5fa7fea25b7629d"
         }
       },
       "json-to-file": {
@@ -912,12 +917,17 @@
             "score": 6.5,
             "date": "2025-12-06T18:23:32Z",
             "commit": "2792f47e867b03d6483a8479af5ed19fb6f675cc"
+          },
+          {
+            "score": 7.7,
+            "date": "2025-12-06T21:32:19Z",
+            "commit": "982c77c0a1f89964fa51e219c72bc592469c11d4"
           }
         ],
         "current": {
-          "score": 7.7,
-          "date": "2025-12-06T21:32:19Z",
-          "commit": "982c77c0a1f89964fa51e219c72bc592469c11d4"
+          "score": 7.6,
+          "date": "2025-12-30T17:29:50Z",
+          "commit": "fabf16ac800c7cfc2bd33b6a9ea1db32f9424a23"
         }
       },
       "actionlint": {
@@ -1096,12 +1106,17 @@
             "score": 8.8,
             "date": "2025-11-22T02:49:07Z",
             "commit": "467e2ce19b2310e93c9ffa0b50fe31f86b5a7f23"
+          },
+          {
+            "score": 8,
+            "date": "2025-12-06T18:14:07Z",
+            "commit": "6e7e6cc994ef264e2addb5708a093f9fdf771d2d"
           }
         ],
         "current": {
-          "score": 8,
-          "date": "2025-12-06T18:14:07Z",
-          "commit": "6e7e6cc994ef264e2addb5708a093f9fdf771d2d"
+          "score": 7,
+          "date": "2025-12-30T19:28:06Z",
+          "commit": "cf90612a56c84b35713cdfc56c63ac77f0bc5035"
         }
       },
       "action-template": {
@@ -1173,12 +1188,17 @@
             "score": 6.9,
             "date": "2024-11-02T20:34:12Z",
             "commit": "a0b06b2e1f3184e43595d05c363467ae40412fa3"
+          },
+          {
+            "score": 6.8,
+            "date": "2025-10-02T21:26:47Z",
+            "commit": "70ea1824fafc04226beb0504be137f70dc680a2f"
           }
         ],
         "current": {
-          "score": 6.8,
-          "date": "2025-10-02T21:26:47Z",
-          "commit": "70ea1824fafc04226beb0504be137f70dc680a2f"
+          "score": 6.1,
+          "date": "2025-12-30T19:20:00Z",
+          "commit": "903535ed41c6c84aca199b4d04e312cfdd2ce89e"
         }
       },
       "docker-action-demo2": {
@@ -1290,12 +1310,17 @@
             "score": 6.2,
             "date": "2025-12-06T14:24:19Z",
             "commit": "5ecd07520cbd88fab2c14d81f0c15cd275afe6b2"
+          },
+          {
+            "score": 7.1,
+            "date": "2025-12-06T22:34:23Z",
+            "commit": "5a0cb1e01bdc0dd3991ff05888ccf68de4107431"
           }
         ],
         "current": {
-          "score": 7.1,
-          "date": "2025-12-06T22:34:23Z",
-          "commit": "5a0cb1e01bdc0dd3991ff05888ccf68de4107431"
+          "score": 7,
+          "date": "2025-12-30T17:28:47Z",
+          "commit": "ac5fd47e33782349001e47d6a4c31c07fb208dca"
         }
       },
       "github-copilot-pr-analysis": {
@@ -1314,12 +1339,17 @@
             "score": 7.1,
             "date": "2025-12-21T20:30:34Z",
             "commit": "57461671576676e825f314fa6299716e74fbd60b"
+          },
+          {
+            "score": 6.8,
+            "date": "2025-12-24T09:55:03Z",
+            "commit": "b1c5c2152420fd0cda1e3782b21e173313525ba8"
           }
         ],
         "current": {
-          "score": 6.8,
-          "date": "2025-12-24T09:55:03Z",
-          "commit": "b1c5c2152420fd0cda1e3782b21e173313525ba8"
+          "score": 5.9,
+          "date": "2025-12-30T17:34:45Z",
+          "commit": "a8d206c8d9419114461b2432090f679c29dfc343"
         }
       }
     }
