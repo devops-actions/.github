@@ -46,7 +46,7 @@ jobs:
           rm actions.json
           
           # remove the added ref repo to prevent it from ending up in the repo
-          git rm --cached actions/codespaces-models
+          git rm -f --cached actions/codespaces-models
 
       - name: Check for changes
         id: check-changes
