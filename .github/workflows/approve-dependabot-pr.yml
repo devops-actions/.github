@@ -22,6 +22,11 @@ jobs:
       update-type: ${{ steps.metadata.outputs.update-type }}
       token: ${{ steps.get-token.outputs.token }}
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
       - name: Get correct token to use
         if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
         id: get-token
@@ -62,6 +67,11 @@ jobs:
       pull-requests: write
       actions: write #the updates for this ecosystem will push to the .github/workflows folder
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
       - name: Show needs values
         run: |
           echo "Got eecosystem:  [${{ needs.dependabot-check.outputs.ecosystem }}]"
@@ -90,6 +100,11 @@ jobs:
       pull-requests: write
       actions: read #the updates for this ecosystem will NOT push to the .github/workflows folder
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
       - name: Approve the PR
         if: (github.event.pull_request.user.login == 'dependabot[bot]' || needs.dependabot-check.outputs.ecosystem == 'github-actions') && (needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch')
         run: gh pr review --approve "$PR_URL"
@@ -108,6 +123,11 @@ jobs:
     runs-on: ubuntu-latest
     if: always() # this job needs to run because we use it as a required workflow
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
       - name: Empty step
         if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' }}
         run: echo "Hello user! We needed a job to run in this required workflow, or it prohibits merging" | tee "$GITHUB_STEP_SUMMARY"
