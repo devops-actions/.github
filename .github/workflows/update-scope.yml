@@ -40,9 +40,13 @@ jobs:
         run: |
           node .github/scripts/transform-to-scope.js actions.json ossf-reporting/scope.json
 
-      - name: Remove the actions.json
+      - name: Remove the additional files
         run: |
+          # remove the create actions file to prevent it from ending up in the repo
           rm actions.json
+          
+          # remove the added ref repo to prevent it from ending up in the repo
+          git rm --cached actions/codespaces-models
 
       - name: Check for changes
         id: check-changes
