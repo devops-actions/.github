@@ -45,10 +45,10 @@ jobs:
         run: |
           if git diff --quiet ossf-reporting/scope.json; then
             echo "No changes detected in scope.json"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
             echo "Changes detected in scope.json"
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
             
             # Show the diff for logging
             echo "Diff:"
@@ -90,12 +90,14 @@ jobs:
       - name: Summary
         run: |
           if [ "${{ steps.check-changes.outputs.has_changes }}" == "true" ]; then
-            echo "✅ Created PR with updated scope.json" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### Changes" >> $GITHUB_STEP_SUMMARY
-            echo '```diff' >> $GITHUB_STEP_SUMMARY
-            git diff ossf-reporting/scope.json >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
+            {
+              echo "✅ Created PR with updated scope.json"
+              echo ""
+              echo "### Changes"
+              echo '```diff'
+              git diff ossf-reporting/scope.json
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "ℹ️ No changes needed - scope.json is up to date" >> $GITHUB_STEP_SUMMARY
+            echo "ℹ️ No changes needed - scope.json is up to date" >> "$GITHUB_STEP_SUMMARY"
           fi
