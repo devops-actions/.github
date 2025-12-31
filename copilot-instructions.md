@@ -7,4 +7,16 @@
 - When referencing shared CI/CD logic, point to the reusable workflow definitions under `.github/workflows` in the `.github` repository and assume they are imported by the individual repos.
 - Keep documentation contributions concise and align terminology across repos to simplify reuse.
 - When making changes, go in and out each repo where needed and run the git commands inside the repo folder
-- When asked to update all repos, loop over each folder, and make sure they are checked out at the main branch, with a `git pull` to be at the latest stage.
+- When asked to update all repos, first list the subfolders (for example with `Get-ChildItem -Directory`) and then run a scripted loop so each repo checks out its main branch and pulls the latest changes:
+
+```
+Push-Location "c:\Users\RobBos\code\repos\devops-actions"
+foreach ($repo in Get-ChildItem -Directory) {
+	Push-Location $repo.FullName
+	git fetch --all --prune
+	git checkout main
+	git pull --ff-only
+	Pop-Location
+}
+Pop-Location
+```
