@@ -2,6 +2,8 @@
 - Multi-repo VS Code workspace rooted at `devops-actions` which is also an organization at GitHub; treat each folder as an individual GitHub Action project as it is a repository on its own.
 - All projects belong to the `devops-actions` org and reuse centralized reusable workflows stored in the `.github` repository in this workspace.
 
+Most repositories contain GitHub Actions, which can be checked by looking for a `action.yml` or `action.yaml` file in the root of the repository.
+
 ## Authoring Guidance
 - Prefer patterns consistent with existing TypeScript and JavaScript GitHub Actions in this workspace.
 - When referencing shared CI/CD logic, point to the reusable workflow definitions under `.github/workflows` in the `.github` repository and assume they are imported by the individual repos.
