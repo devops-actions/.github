@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Load available actions
-        uses: devops-actions/load-available-actions@25cd9b38595c0526bb938c99f432d0a3e7365c3f # v2.1.16
+        uses: devops-actions/load-available-actions@b46a50119e29dd0930da799e49f36c7f33d98cb6 # v2.2.0
         id: load-actions
         with:
           PAT: ${{ secrets.GITHUB_TOKEN }}
