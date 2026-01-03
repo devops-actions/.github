@@ -129,12 +129,7 @@ def main():
     else:
         print(f"Warning: Profile README not found at {profile_readme}")
     
-    # Update root README
-    if root_readme.exists():
-        print(f"Updating {root_readme}")
-        update_readme_file(root_readme, table_content, marker_start, marker_end)
-    else:
-        print(f"Warning: Root README not found at {root_readme}")
+    # Note: Root README is no longer updated with scorecard data
     
     print("README files updated successfully!")
 
