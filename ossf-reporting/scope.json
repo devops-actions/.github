@@ -11,7 +11,8 @@
         "load-available-actions",
         "load-runner-info",
         "load-used-actions",
-        "variable-substitution"
+        "variable-substitution",
+        "action-template"
       ],
       "excluded": []
     }
