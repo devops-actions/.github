@@ -174,6 +174,7 @@ jobs:
           # Parse commits for categories
           $dependencies = @()
           $securityUpdates = @()
+          $securityDependencies = @()
           $features = @()
           $fixes = @()
           $other = @()
@@ -190,13 +191,21 @@ jobs:
             # Check if it's a security-related update
             $isSecurity = $message -match '(security|vulnerability|CVE-|GHSA-|dependabot.*security|\[security\])'
             
+            # Check if it's a dependency update
+            $isDependency = $message -match '^(build|chore|ci)\(deps'
+            
             if ($isSecurity) {
               $securityLine = "- ⚠️ $message ([$hash](https://github.com/${{ github.repository }}/commit/$hash)) by @$author on $date"
               $securityUpdates += $securityLine
+              
+              # Track if this security update is also a dependency update
+              if ($isDependency) {
+                $securityDependencies += $commitLine
+              }
             }
             
             # Categorize by conventional commit type
-            if ($message -match '^(build|chore|ci)\(deps') {
+            if ($isDependency) {
               if (-not $isSecurity) {
                 $dependencies += $commitLine
               }
@@ -246,9 +255,14 @@ jobs:
           # Save changelog to file
           $changelog | Out-File -FilePath changelog.md -Encoding utf8
           
+          # Calculate total dependency count (security + non-security)
+          $totalDependencies = $dependencies.Count + $securityDependencies.Count
+          
           # Save counts
           echo "commit_count=$($commits.Count)" >> $env:GITHUB_OUTPUT
           echo "dependency_count=$($dependencies.Count)" >> $env:GITHUB_OUTPUT
+          echo "security_dependency_count=$($securityDependencies.Count)" >> $env:GITHUB_OUTPUT
+          echo "total_dependency_count=$totalDependencies" >> $env:GITHUB_OUTPUT
           echo "security_count=$($securityUpdates.Count)" >> $env:GITHUB_OUTPUT
           echo "feature_count=$($features.Count)" >> $env:GITHUB_OUTPUT
           echo "fix_count=$($fixes.Count)" >> $env:GITHUB_OUTPUT
@@ -312,8 +326,20 @@ jobs:
           - **Total commits**: ${{ steps.commits.outputs.commit_count }}
           - **Features**: ${{ steps.commits.outputs.feature_count }}
           - **Bug fixes**: ${{ steps.commits.outputs.fix_count }}
-          - **Dependency updates**: ${{ steps.commits.outputs.dependency_count }}
-          - **Security updates**: $(if ("${{ steps.needs-release.outputs.has_security_updates }}" -eq "true") { "Yes ⚠️" } else { "No" })
+          $(if ("${{ steps.commits.outputs.total_dependency_count }}" -gt 0) {
+            if ("${{ steps.commits.outputs.security_dependency_count }}" -gt 0 -and "${{ steps.commits.outputs.dependency_count }}" -gt 0) {
+              "- **Dependency updates**: ${{ steps.commits.outputs.total_dependency_count }} total (${{ steps.commits.outputs.security_dependency_count }} security-related, ${{ steps.commits.outputs.dependency_count }} other)"
+            }
+            elseif ("${{ steps.commits.outputs.security_dependency_count }}" -gt 0) {
+              "- **Dependency updates**: ${{ steps.commits.outputs.security_dependency_count }} (all security-related)"
+            }
+            else {
+              "- **Dependency updates**: ${{ steps.commits.outputs.dependency_count }}"
+            }
+          } else { "" })
+          $(if ("${{ steps.commits.outputs.security_count }}" -gt 0) {
+            "- **Security updates**: ${{ steps.commits.outputs.security_count }} ⚠️"
+          } else { "" })
           
           $changelog
           
