@@ -148,7 +148,7 @@ jobs:
       - name: Simple Semver
         id: semver
         if: steps.needs-release.outputs.newrelease == 'true'
-        uses: rajbos-actions/simple-semver@2d08db8e01a34addc30f2ad9e7f186959c10738b # v0.1.3
+        uses: rajbos-actions/simple-semver@967d66a65b0c5afae2a815ab2d311f66a32293ab # v0.1.1
         with:
           semver-input: "${{ steps.needs-release.outputs.version }}"
           increment: p
