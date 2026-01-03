@@ -604,12 +604,17 @@
             "score": 8.2,
             "date": "2025-11-08T02:42:18Z",
             "commit": "0cb6a3e357326e71cdfd93705dcf92c202c4743b"
+          },
+          {
+            "score": 7.2,
+            "date": "2025-12-30T19:19:23Z",
+            "commit": "9bc5c8fa153cc69a18b97016d5fa7fea25b7629d"
           }
         ],
         "current": {
-          "score": 7.2,
-          "date": "2025-12-30T19:19:23Z",
-          "commit": "9bc5c8fa153cc69a18b97016d5fa7fea25b7629d"
+          "score": 7.7,
+          "date": "2026-01-03T02:59:50Z",
+          "commit": "eb33e0a78814cb967ecd0e2c4553895aa75d99a8"
         }
       },
       "json-to-file": {
@@ -773,12 +778,17 @@
             "score": 8.3,
             "date": "2025-12-06T23:46:23Z",
             "commit": "3aa4b5e74fa6721eb545f388de9556f33909a662"
+          },
+          {
+            "score": 8.4,
+            "date": "2025-12-13T02:58:54Z",
+            "commit": "4e3937e8c783208ff53dd1d0f56b9b4f12f02cb0"
           }
         ],
         "current": {
-          "score": 8.4,
-          "date": "2025-12-13T02:58:54Z",
-          "commit": "4e3937e8c783208ff53dd1d0f56b9b4f12f02cb0"
+          "score": 7.9,
+          "date": "2026-01-03T03:08:02Z",
+          "commit": "0e3cd2f206ea879148b2170fbc9cb372b8f4b7d6"
         }
       },
       "load-used-actions": {
@@ -1193,12 +1203,17 @@
             "score": 6.8,
             "date": "2025-10-02T21:26:47Z",
             "commit": "70ea1824fafc04226beb0504be137f70dc680a2f"
+          },
+          {
+            "score": 6.1,
+            "date": "2025-12-30T19:20:00Z",
+            "commit": "903535ed41c6c84aca199b4d04e312cfdd2ce89e"
           }
         ],
         "current": {
-          "score": 6.1,
-          "date": "2025-12-30T19:20:00Z",
-          "commit": "903535ed41c6c84aca199b4d04e312cfdd2ce89e"
+          "score": 7.6,
+          "date": "2026-01-03T03:40:56Z",
+          "commit": "ef10c7102096380b38e610ee4f2da462d6777416"
         }
       },
       "docker-action-demo2": {
@@ -1315,12 +1330,17 @@
             "score": 7.1,
             "date": "2025-12-06T22:34:23Z",
             "commit": "5a0cb1e01bdc0dd3991ff05888ccf68de4107431"
+          },
+          {
+            "score": 7,
+            "date": "2025-12-30T17:28:47Z",
+            "commit": "ac5fd47e33782349001e47d6a4c31c07fb208dca"
           }
         ],
         "current": {
-          "score": 7,
-          "date": "2025-12-30T17:28:47Z",
-          "commit": "ac5fd47e33782349001e47d6a4c31c07fb208dca"
+          "score": 6.9,
+          "date": "2026-01-03T03:10:20Z",
+          "commit": "31e4edfa14cf84046c87f0034f37af94dcff1ed9"
         }
       },
       "github-copilot-pr-analysis": {
