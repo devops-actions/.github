@@ -624,11 +624,16 @@
             "score": 7.7,
             "date": "2026-01-03T02:59:50Z",
             "commit": "eb33e0a78814cb967ecd0e2c4553895aa75d99a8"
+          },
+          {
+            "score": 7.6,
+            "date": "2026-01-17T03:01:54Z",
+            "commit": "eb33e0a78814cb967ecd0e2c4553895aa75d99a8"
           }
         ],
         "current": {
-          "score": 7.6,
-          "date": "2026-01-17T03:01:54Z",
+          "score": 7.4,
+          "date": "2026-01-31T03:33:25Z",
           "commit": "eb33e0a78814cb967ecd0e2c4553895aa75d99a8"
         }
       },
@@ -1233,12 +1238,17 @@
             "score": 7.5,
             "date": "2026-01-17T03:40:29Z",
             "commit": "ef10c7102096380b38e610ee4f2da462d6777416"
+          },
+          {
+            "score": 7.4,
+            "date": "2026-01-24T03:46:00Z",
+            "commit": "ef10c7102096380b38e610ee4f2da462d6777416"
           }
         ],
         "current": {
-          "score": 7.4,
-          "date": "2026-01-24T03:46:00Z",
-          "commit": "ef10c7102096380b38e610ee4f2da462d6777416"
+          "score": 7.5,
+          "date": "2026-02-01T16:08:36Z",
+          "commit": "d0c2a53bb14a046acef41928e381513d6023b03f"
         }
       },
       "docker-action-demo2": {
