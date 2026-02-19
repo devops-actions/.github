@@ -1,0 +1,57 @@
+name: Validate Action Examples
+
+on:
+  pull_request:
+    branches: main
+
+  workflow_call:
+    inputs:
+      repository:
+        description: "Repository name in 'owner/repo' format. Optional; auto-detected when omitted."
+        required: false
+        type: string
+        default: ''
+      repository-path:
+        description: 'Path to the repository root (defaults to current directory).'
+        required: false
+        type: string
+        default: '.'
+      action-pattern:
+        description: 'Glob pattern to find action files.'
+        required: false
+        type: string
+        default: '{**/,}action.{yml,yaml}'
+      docs-pattern:
+        description: 'Glob pattern to find documentation files.'
+        required: false
+        type: string
+        default: '**/*.md'
+    secrets:
+      token:
+        description: 'Optional GitHub token (enables fork detection).'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate-examples:
+    name: Validate examples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@e3f713f2d8f53843e71c69a996d56f51aa9adfb9 # v2.14.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Validate documentation examples
+        uses: jessehouwing/actions-example-checker@9f7902b477ad1d162e12196610247799c2e9fdd3 # v0.0.3
+        with:
+          token: "${{ secrets.token != '' && secrets.token || secrets.GITHUB_TOKEN }}"
+          repository: "${{ inputs.repository }}"
+          repository-path: "${{ inputs.repository-path }}"
+          action-pattern: "${{ inputs.action-pattern }}"
+          docs-pattern: "${{ inputs.docs-pattern }}"
