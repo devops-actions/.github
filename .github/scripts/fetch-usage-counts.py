@@ -18,7 +18,7 @@ from pathlib import Path
 SEARCH_DELAY_SECONDS = 3
 
 
-def search_action_usage(org, repo, token):
+def search_action_usage(org, repo, token, retries=2):
     """Search GitHub for unique repositories using a specific action.
 
     Queries the GitHub Code Search API to find workflow files referencing
@@ -34,7 +34,7 @@ def search_action_usage(org, repo, token):
         'User-Agent': 'devops-actions-usage-counter',
     }
     if token:
-        headers['Authorization'] = f'token {token}'
+        headers['Authorization'] = f'Bearer {token}'
 
     try:
         req = urllib.request.Request(url, headers=headers)
@@ -57,10 +57,10 @@ def search_action_usage(org, repo, token):
                 return len(unique_repos), True
             return len(unique_repos), False
     except urllib.error.HTTPError as e:
-        if e.code == 403 or e.code == 429:
-            print("  Rate limited, waiting 60 seconds...")
+        if (e.code == 403 or e.code == 429) and retries > 0:
+            print(f"  Rate limited, waiting 60 seconds... ({retries} retries left)")
             time.sleep(60)
-            return search_action_usage(org, repo, token)
+            return search_action_usage(org, repo, token, retries - 1)
         print(f"  Error searching for {org}/{repo}: HTTP {e.code}")
         return None, False
     except Exception as e:

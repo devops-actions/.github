@@ -152,7 +152,7 @@ def main():
         print("No usage count data found, 'Used by' column will be omitted")
     
     # Create table content
-    table_content = create_simple_table(repos, usage_counts if usage_counts else None)
+    table_content = create_simple_table(repos, usage_counts or None)
     
     # Define markers for the sections
     marker_start = "<!-- OSSF-SCORECARD-START -->"
