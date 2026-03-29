@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Validate documentation examples
-        uses: jessehouwing/actions-example-checker@9f7902b477ad1d162e12196610247799c2e9fdd3 # v0.0.3
+        uses: jessehouwing/actions-example-checker@ea0821955c7ecf2c98e5b184054ba31486914a7b # v0.0.4
         with:
           token: "${{ secrets.token != '' && secrets.token || secrets.GITHUB_TOKEN }}"
           repository: "${{ inputs.repository }}"
