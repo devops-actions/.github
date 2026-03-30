@@ -61,13 +61,11 @@ jobs:
           discovery-enabled: true
           discovery-orgs: devops-actions
       
-      - name: Fetch dependents counts via Playwright
-        run: |
-          echo "Installing Playwright..."
-          pip install playwright
-          playwright install chromium --with-deps
-          echo "Fetching dependents counts for actions..."
-          python3 .github/scripts/fetch-usage-counts.py
+      - name: Fetch dependents counts
+        uses: devops-actions/load-dependents-count@0d262a83629049daf94663490d021533d77da695 # v0.0.2
+        with:
+          scope-file: ossf-reporting/scope.json
+          output-file: ossf-reporting/repo-usage.json
 
       - name: Update README files with scorecard data
         run: |
