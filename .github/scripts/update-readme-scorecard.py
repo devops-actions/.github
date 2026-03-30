@@ -5,8 +5,10 @@ Extracts data from openssf-scorecard-report.md and updates both
 the root README.md and profile/README.md files.
 """
 
+import json
 import re
 import sys
+import urllib.parse
 from pathlib import Path
 
 
@@ -55,17 +57,43 @@ def extract_scorecard_data(report_path):
     return repos
 
 
-def create_simple_table(repos):
-    """Create a simple table with repo name and badge."""
-    lines = [
-        "|Repo|Score|",
-        "|---|---|"
-    ]
+def load_usage_counts(usage_path):
+    """Load repository usage counts from the JSON file."""
+    if not usage_path.exists():
+        return {}
+    try:
+        with open(usage_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+def create_simple_table(repos, usage_counts=None):
+    """Create a simple table with repo name, badge, and optionally used-by count."""
+    if usage_counts:
+        lines = [
+            "|Repo|Score|Used by|",
+            "|---|---|---|"
+        ]
+    else:
+        lines = [
+            "|Repo|Score|",
+            "|---|---|"
+        ]
     
     for repo in repos:
         # Create badge URL
         badge_url = f"[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{repo['full_name']}/badge)](https://api.securityscorecards.dev/projects/github.com/{repo['full_name']})"
-        lines.append(f"|[{repo['short_name']}]({repo['url']})|{badge_url}|")
+
+        if usage_counts:
+            count = usage_counts.get(repo['full_name'], 0)
+            # Link to GitHub code search so users can see which repos use this action
+            search_query = urllib.parse.quote(f'"uses: {repo["full_name"]}" path:.github/workflows')
+            search_url = f"https://github.com/search?q={search_query}&type=code"
+            used_by = f"[{count}]({search_url})"
+            lines.append(f"|[{repo['short_name']}]({repo['url']})|{badge_url}|{used_by}|")
+        else:
+            lines.append(f"|[{repo['short_name']}]({repo['url']})|{badge_url}|")
     
     return '\n'.join(lines)
 
@@ -98,6 +126,7 @@ def main():
     # Paths
     repo_root = Path(__file__).parent.parent.parent
     report_path = repo_root / 'ossf-reporting' / 'openssf-scorecard-report.md'
+    usage_path = repo_root / 'ossf-reporting' / 'repo-usage.json'
     profile_readme = repo_root / 'profile' / 'README.md'
     root_readme = repo_root / 'README.md'
     
@@ -115,8 +144,15 @@ def main():
     
     print(f"Found {len(repos)} repositories in scorecard report")
     
+    # Load usage counts (optional - column is only added if data exists)
+    usage_counts = load_usage_counts(usage_path)
+    if usage_counts:
+        print(f"Loaded usage counts for {len(usage_counts)} repositories")
+    else:
+        print("No usage count data found, 'Used by' column will be omitted")
+    
     # Create table content
-    table_content = create_simple_table(repos)
+    table_content = create_simple_table(repos, usage_counts or None)
     
     # Define markers for the sections
     marker_start = "<!-- OSSF-SCORECARD-START -->"

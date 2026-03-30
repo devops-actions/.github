@@ -1,2 +1,5 @@
 # actionlint binary downloaded for local testing
 actionlint
+
+# Python
+__pycache__/

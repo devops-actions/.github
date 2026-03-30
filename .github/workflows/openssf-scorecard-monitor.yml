@@ -61,6 +61,13 @@ jobs:
           discovery-enabled: true
           discovery-orgs: devops-actions
       
+      - name: Fetch usage counts for each action
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Fetching usage counts for actions..."
+          python3 .github/scripts/fetch-usage-counts.py
+
       - name: Update README files with scorecard data
         run: |
           echo "Updating README files with scorecard information..."
@@ -71,7 +78,7 @@ jobs:
             echo "Changes detected in README files"
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add profile/README.md
+            git add profile/README.md ossf-reporting/repo-usage.json
             git commit -m "Update profile README with latest OpenSSF Scorecard data"
             git push
           else
