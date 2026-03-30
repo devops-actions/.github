@@ -1609,6 +1609,14 @@
           "date": "2026-03-28T03:57:20Z",
           "commit": "0ce80a6c2dd08efcbd7ec055815718217a9b4cfd"
         }
+      },
+      "load-dependents-count": {
+        "previous": [],
+        "current": {
+          "score": 5.9,
+          "date": "2026-03-30T19:52:31Z",
+          "commit": "eb6cd1f5203ddaf6aa4ea382a63d4e260f7f78ba"
+        }
       }
     }
   }
