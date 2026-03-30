@@ -8,7 +8,6 @@ the root README.md and profile/README.md files.
 import json
 import re
 import sys
-import urllib.parse
 from pathlib import Path
 
 
@@ -72,7 +71,7 @@ def create_simple_table(repos, usage_counts=None):
     """Create a simple table with repo name, badge, and optionally used-by count."""
     if usage_counts:
         lines = [
-            "|Repo|Score|Used by|",
+            "|Repo|Score|Dependents|",
             "|---|---|---|"
         ]
     else:
@@ -87,10 +86,9 @@ def create_simple_table(repos, usage_counts=None):
 
         if usage_counts:
             count = usage_counts.get(repo['full_name'], 0)
-            # Link to GitHub code search so users can see which repos use this action
-            search_query = urllib.parse.quote(f'"uses: {repo["full_name"]}" path:.github/workflows')
-            search_url = f"https://github.com/search?q={search_query}&type=code"
-            used_by = f"[{count}]({search_url})"
+            # Link to GitHub dependents page
+            dependents_url = f"https://github.com/{repo['full_name']}/network/dependents"
+            used_by = f"[{count}]({dependents_url})"
             lines.append(f"|[{repo['short_name']}]({repo['url']})|{badge_url}|{used_by}|")
         else:
             lines.append(f"|[{repo['short_name']}]({repo['url']})|{badge_url}|")

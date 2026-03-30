@@ -61,11 +61,12 @@ jobs:
           discovery-enabled: true
           discovery-orgs: devops-actions
       
-      - name: Fetch usage counts for each action
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch dependents counts via Playwright
         run: |
-          echo "Fetching usage counts for actions..."
+          echo "Installing Playwright..."
+          pip install playwright
+          playwright install chromium --with-deps
+          echo "Fetching dependents counts for actions..."
           python3 .github/scripts/fetch-usage-counts.py
 
       - name: Update README files with scorecard data
