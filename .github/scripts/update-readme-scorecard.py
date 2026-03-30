@@ -53,6 +53,7 @@ def extract_scorecard_data(report_path):
             # End of table
             break
     
+    repos.sort(key=lambda r: r['short_name'].lower())
     return repos
 
 
