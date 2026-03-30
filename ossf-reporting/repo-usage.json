@@ -1,12 +1,15 @@
 {
   "devops-actions/action-get-tag": 677,
+  "devops-actions/action-template": 0,
   "devops-actions/actionlint": 311,
   "devops-actions/azure-appservice-settings": 6,
   "devops-actions/github-copilot-pr-analysis": 2,
   "devops-actions/issue-comment-tag": 196,
   "devops-actions/json-to-file": 57,
   "devops-actions/load-available-actions": 17,
+  "devops-actions/load-dependents-count": 0,
   "devops-actions/load-runner-info": 5,
   "devops-actions/load-used-actions": 5,
+  "devops-actions/secure-action-inputs": 0,
   "devops-actions/variable-substitution": 73
 }
