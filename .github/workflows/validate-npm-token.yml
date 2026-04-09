@@ -1,0 +1,38 @@
+name: Validate npm Token
+
+on:
+  workflow_dispatch:
+    inputs:
+      token:
+        description: 'GitHub token with read:packages scope to test (leave empty to use repo secret NPM_TOKEN)'
+        required: false
+        type: string
+
+  push:
+    paths:
+      - .github/workflows/validate-npm-token.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate-npm-token:
+    name: Validate npm token for GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+        with:
+          egress-policy: audit
+
+      - name: Setup Node.js with GitHub Packages registry
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@devops-actions'
+
+      - name: Install @devops-actions/actions-marketplace-client
+        run: npm install @devops-actions/actions-marketplace-client
+        env:
+          NODE_AUTH_TOKEN: ${{ inputs.token != '' && inputs.token || secrets.NPM_TOKEN }}
