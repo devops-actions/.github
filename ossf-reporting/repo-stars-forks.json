@@ -1,0 +1,54 @@
+{
+  "devops-actions/action-get-tag": {
+    "forks": 4,
+    "stars": 7
+  },
+  "devops-actions/action-template": {
+    "forks": 0,
+    "stars": 0
+  },
+  "devops-actions/actionlint": {
+    "forks": 4,
+    "stars": 9
+  },
+  "devops-actions/azure-appservice-settings": {
+    "forks": 2,
+    "stars": 1
+  },
+  "devops-actions/github-copilot-pr-analysis": {
+    "forks": 1,
+    "stars": 1
+  },
+  "devops-actions/issue-comment-tag": {
+    "forks": 8,
+    "stars": 5
+  },
+  "devops-actions/json-to-file": {
+    "forks": 13,
+    "stars": 14
+  },
+  "devops-actions/load-available-actions": {
+    "forks": 16,
+    "stars": 5
+  },
+  "devops-actions/load-dependents-count": {
+    "forks": 1,
+    "stars": 0
+  },
+  "devops-actions/load-runner-info": {
+    "forks": 9,
+    "stars": 16
+  },
+  "devops-actions/load-used-actions": {
+    "forks": 8,
+    "stars": 18
+  },
+  "devops-actions/secure-action-inputs": {
+    "forks": 1,
+    "stars": 0
+  },
+  "devops-actions/variable-substitution": {
+    "forks": 5,
+    "stars": 9
+  }
+}
