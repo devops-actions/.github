@@ -1,7 +1,7 @@
 ---
 description: "Use when: checking repo status, triaging open PRs, closing dependabot PRs, syncing repos, reviewing open issues, org maintenance, repo health check, devops-actions org status"
 name: "Repo Status"
-tools: [execute, read, search, todo]
+tools: [execute, read, search, todo, mcp_github_github_list_dependabot_alerts, mcp_github_github_list_code_scanning_alerts, mcp_github_github_list_secret_scanning_alerts]
 argument-hint: "What to check or do: 'sync all repos', 'check open PRs', 'close dependabot PRs', 'triage issues', or leave blank for full status report"
 ---
 
@@ -103,7 +103,35 @@ foreach ($repo in $repos) {
 }
 ```
 
-## Step 6 — Categorize issues and suggest action
+## Step 6 — Security alerts via GitHub MCP
+
+For each repo, use the GitHub MCP tools to pull open security alerts. Do all three alert types:
+
+### Dependabot vulnerability alerts
+Call `mcp_github_github_list_dependabot_alerts` with `owner: "devops-actions"`, `repo: <repo>`, `state: "open"` for each repo.
+- Group results by severity: **critical → high → medium → low**
+- For each alert include: package name, severity, CVE/GHSA id, and whether a Dependabot PR already exists (cross-reference open PRs from Step 2)
+
+### Code scanning alerts
+Call `mcp_github_github_list_code_scanning_alerts` with `owner: "devops-actions"`, `repo: <repo>`, `state: "open"` for each repo.
+- Include: rule id, severity, description, file path
+- Skip repos with no results
+
+### Secret scanning alerts
+Call `mcp_github_github_list_secret_scanning_alerts` with `owner: "devops-actions"`, `repo: <repo>`, `state: "open"` for each repo.
+- Any open secret alert is **critical priority** — surface it immediately and prominently
+- Include: secret type, created date
+
+### Alert triage table
+
+| Severity | Alert type | Default action |
+|----------|-----------|----------------|
+| **Critical/High** vuln | Dependabot | Check if a Dependabot PR exists; if not, note it needs one |
+| **Medium/Low** vuln | Dependabot | List for awareness; low urgency |
+| Code scanning any | CodeQL | List with file location; flag critical/high for work |
+| Secret scanning open | Secret | Flag immediately regardless of other work |
+
+## Step 7 — Categorize issues and suggest action
 
 | Category | Criteria | Suggestion |
 |----------|----------|-----------|
@@ -139,4 +167,8 @@ End every run with a structured summary:
 
 ### Issues needing attention
 - <repo> #<n> — <summary>
+
+### Security alerts
+- <repo> — <type>: <severity> — <package/rule/secret type>
+  (note if a Dependabot PR already covers it)
 ```
