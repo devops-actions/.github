@@ -11,10 +11,7 @@
         "load-available-actions",
         "load-runner-info",
         "load-used-actions",
-        "variable-substitution",
-        "action-template",
-        "secure-action-inputs",
-        "load-dependents-count"
+        "variable-substitution"
       ],
       "excluded": []
     }
