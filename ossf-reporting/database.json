@@ -366,12 +366,17 @@
             "score": 7.5,
             "date": "2026-03-21T03:39:25Z",
             "commit": "88d7722113ff3abe03e8f9837d27634cf54adf9c"
+          },
+          {
+            "score": 7.6,
+            "date": "2026-04-04T04:01:02Z",
+            "commit": "7ee204b305e6e3e8066cd6c28e8230ae14e6fef1"
           }
         ],
         "current": {
-          "score": 7.6,
-          "date": "2026-04-04T04:01:02Z",
-          "commit": "7ee204b305e6e3e8066cd6c28e8230ae14e6fef1"
+          "score": 7.5,
+          "date": "2026-04-11T10:29:01Z",
+          "commit": "f29e7ef492f8b151b50a11b989bee90ab022923b"
         }
       },
       "issue-comment-tag": {
@@ -1107,12 +1112,17 @@
             "score": 8.1,
             "date": "2026-03-29T02:31:59Z",
             "commit": "018d37ee85b9cbf506634a71364255e772f9edf9"
+          },
+          {
+            "score": 8.3,
+            "date": "2026-04-04T04:26:23Z",
+            "commit": "0b0420fa4ae90d66da5c6c844c7c9e231ad0d63a"
           }
         ],
         "current": {
-          "score": 8.3,
-          "date": "2026-04-04T04:26:23Z",
-          "commit": "0b0420fa4ae90d66da5c6c844c7c9e231ad0d63a"
+          "score": 7.8,
+          "date": "2026-04-11T10:30:28Z",
+          "commit": "a9484a9293575ef9b1b5815ce66dc84476df2b0c"
         }
       },
       "actionlint": {
@@ -1560,12 +1570,17 @@
             "score": 6.5,
             "date": "2026-03-14T03:54:31Z",
             "commit": "4a871e0517704589f59f1db2237968a77d4a2f59"
+          },
+          {
+            "score": 7.1,
+            "date": "2026-04-04T04:00:54Z",
+            "commit": "071f7f34fe790bf553f8713688963ede6df83fe9"
           }
         ],
         "current": {
-          "score": 7.1,
-          "date": "2026-04-04T04:00:54Z",
-          "commit": "071f7f34fe790bf553f8713688963ede6df83fe9"
+          "score": 6.4,
+          "date": "2026-04-11T10:28:48Z",
+          "commit": "bba77dd77f77cdc5f1e5d5f058b8b43fae81a3c2"
         }
       },
       "github-copilot-pr-analysis": {
