@@ -22,3 +22,55 @@ foreach ($repo in Get-ChildItem -Directory) {
 }
 Pop-Location
 ```
+
+## Reusable Workflows
+
+Shared CI/CD workflows live in `.github/.github/workflows/`. Each action repo calls them via a small caller file in its own `.github/workflows/`.
+
+**Currently active reusable workflows:**
+
+| File | Purpose |
+|------|---------|
+| `actions-example-checker.yml` | Validates action input/output examples in the README against the `action.yml` schema using `jessehouwing/actions-example-checker` |
+
+**Caller file pattern** (identical across all action repos, e.g. `.github/workflows/actions-example-checker.yml`):
+```yaml
+name: Validate Action Examples
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  validate-examples:
+    uses: devops-actions/.github/.github/workflows/actions-example-checker.yml@main
+    permissions:
+      contents: read
+```
+
+When adding a new reusable workflow, add it to the `.github` repo first and then add the caller file to every action repo.
+
+## Branch Protection Rulesets
+
+Every action repo has a ruleset named **"Require PR with passing checks"** targeting the default branch (`~DEFAULT_BRANCH`). Rules:
+
+- **pull_request** — PR required before merge; 0 approvals needed (single maintainer); all merge methods allowed.
+- **required_status_checks** — repo-specific set of jobs that must pass (see table below); not strict (branch does not need to be up-to-date).
+- **deletion** — `main` cannot be deleted.
+- **non_fast_forward** — force pushes blocked.
+- **bypass** — repository admins can bypass for emergencies.
+
+Required status checks per repo:
+
+| Repo | Required checks |
+|------|----------------|
+| `action-get-tag` | `test`, `CodeQL-Build`, `actionlint`, `validate-examples` |
+| `actionlint` | `test-local-action`, `test-action-skip-failure`, `build`, `validate-examples` |
+| `azure-appservice-settings` | `build_test_job`, `analyze`, `validate-examples` |
+| `github-copilot-pr-analysis` | `analyze`, `validate-examples` |
+| `issue-comment-tag` | `build`, `dependency-check`, `analyze`, `validate-examples` |
+| `json-to-file` | `build`, `test`, `check-dist`, `analyze`, `validate-examples` |
+| `load-available-actions` | `Consolidate`, `validate-examples` |
+| `load-runner-info` | `build`, `dependency-check`, `analyze`, `validate-examples` |
+| `load-used-actions` | `unit-tests`, `run-local-action`, `CodeQL-Build`, `validate-examples` |
+| `variable-substitution` | `build_test_job`, `test_action_job`, `analyze`, `validate-examples` |
+
+To update a ruleset: `gh api --method PUT "repos/devops-actions/{repo}/rulesets/{id}"` with the modified JSON body.
