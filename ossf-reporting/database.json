@@ -948,12 +948,17 @@
             "score": 8.4,
             "date": "2026-03-28T03:59:49Z",
             "commit": "ff4125ec3e958c723f4f9ba76ea2ffb25a9184cd"
+          },
+          {
+            "score": 7.7,
+            "date": "2026-04-04T03:57:41Z",
+            "commit": "cacafeca6a85f144364b28c73bd88e98b4fe2d04"
           }
         ],
         "current": {
-          "score": 7.7,
-          "date": "2026-04-04T03:57:41Z",
-          "commit": "cacafeca6a85f144364b28c73bd88e98b4fe2d04"
+          "score": 7.2,
+          "date": "2026-04-12T19:19:57Z",
+          "commit": "8033b8c3a9b1b0d2ef69b5c647b44ec69c495cda"
         }
       },
       "load-used-actions": {
