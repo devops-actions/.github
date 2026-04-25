@@ -62,15 +62,15 @@ Required status checks per repo:
 
 | Repo | Required checks |
 |------|----------------|
-| `action-get-tag` | `test`, `CodeQL-Build`, `actionlint`, `validate-examples` |
-| `actionlint` | `test-local-action`, `test-action-skip-failure`, `build`, `validate-examples` |
-| `azure-appservice-settings` | `build_test_job`, `analyze`, `validate-examples` |
-| `github-copilot-pr-analysis` | `analyze`, `validate-examples` |
-| `issue-comment-tag` | `build`, `dependency-check`, `analyze`, `validate-examples` |
-| `json-to-file` | `build`, `test`, `check-dist`, `analyze`, `validate-examples` |
-| `load-available-actions` | `Consolidate`, `validate-examples` |
-| `load-runner-info` | `build`, `dependency-check`, `analyze`, `validate-examples` |
-| `load-used-actions` | `unit-tests`, `run-local-action`, `CodeQL-Build`, `validate-examples` |
-| `variable-substitution` | `build_test_job`, `test_action_job`, `analyze`, `validate-examples` |
+| `action-get-tag` | `test`, `CodeQL-Build`, `actionlint / run-actionlint`, `validate-examples / Validate examples` |
+| `actionlint` | `Test with normal setup`, `Test with skip failure set on the action`, `validate-examples / Validate examples` |
+| `azure-appservice-settings` | `Build and test job (ubuntu-latest)`, `Build and test job (macos-latest)`, `Build and test job (windows-latest)`, `Analyze (javascript)`, `Analyze (typescript)`, `validate-examples / Validate examples` |
+| `github-copilot-pr-analysis` | `validate-examples / Validate examples`, `actionlint / run-actionlint`, `dependency-review / dependency-review` |
+| `issue-comment-tag` | `build`, `dependency-check`, `Analyze (javascript)`, `Analyze (typescript)`, `validate-examples / Validate examples` |
+| `json-to-file` | `build`, `test`, `check-dist`, `Analyze (TypeScript)`, `validate-examples / Validate examples` |
+| `load-available-actions` | `Consolidate`, `validate-examples / Validate examples` |
+| `load-runner-info` | `build`, `dependency-check`, `Analyze (actions)`, `Analyze (javascript-typescript)`, `validate-examples / Validate examples` |
+| `load-used-actions` | `Run unit tests`, `Run action from branch`, `CodeQL-Build`, `validate-examples / Validate examples` |
+| `variable-substitution` | `Build and test job (ubuntu-latest)`, `Build and test job (macos-latest)`, `Build and test job (windows-latest)`, `Execute the local action`, `Analyze (javascript)`, `Analyze (typescript)`, `validate-examples / Validate examples` |
 
 To update a ruleset: `gh api --method PUT "repos/devops-actions/{repo}/rulesets/{id}"` with the modified JSON body.
