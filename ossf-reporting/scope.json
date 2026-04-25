@@ -9,12 +9,11 @@
         "issue-comment-tag",
         "json-to-file",
         "load-available-actions",
+        "load-dependents-count",
         "load-runner-info",
         "load-used-actions",
-        "variable-substitution",
-        "action-template",
         "secure-action-inputs",
-        "load-dependents-count"
+        "variable-substitution"
       ],
       "excluded": []
     }
