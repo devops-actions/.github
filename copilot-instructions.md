@@ -63,7 +63,7 @@ Required status checks per repo:
 | Repo | Required checks |
 |------|----------------|
 | `action-get-tag` | `test`, `CodeQL-Build`, `actionlint`, `validate-examples` |
-| `actionlint` | `test-local-action`, `test-action-skip-failure`, `build`, `validate-examples` |
+| `actionlint` | `Test with normal setup`, `Test with skip failure set on the action`, `validate-examples / Validate examples` |
 | `azure-appservice-settings` | `build_test_job`, `analyze`, `validate-examples` |
 | `github-copilot-pr-analysis` | `analyze`, `validate-examples` |
 | `issue-comment-tag` | `build`, `dependency-check`, `analyze`, `validate-examples` |
