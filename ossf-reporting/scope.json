@@ -9,10 +9,8 @@
         "issue-comment-tag",
         "json-to-file",
         "load-available-actions",
-        "load-dependents-count",
         "load-runner-info",
         "load-used-actions",
-        "secure-action-inputs",
         "variable-substitution"
       ],
       "excluded": []
