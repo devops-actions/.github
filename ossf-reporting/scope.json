@@ -13,7 +13,8 @@
         "load-runner-info",
         "load-used-actions",
         "secure-action-inputs",
-        "variable-substitution"
+        "variable-substitution",
+        "action-template"
       ],
       "excluded": []
     }
