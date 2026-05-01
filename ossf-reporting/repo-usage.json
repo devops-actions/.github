@@ -1,7 +1,7 @@
 {
   "devops-actions/action-get-tag": 679,
   "devops-actions/action-template": 0,
-  "devops-actions/actionlint": 317,
+  "devops-actions/actionlint": 318,
   "devops-actions/azure-appservice-settings": 6,
   "devops-actions/github-copilot-pr-analysis": 2,
   "devops-actions/issue-comment-tag": 196,
