@@ -202,12 +202,17 @@
             "score": 7.7,
             "date": "2026-04-18T04:14:29Z",
             "commit": "89fc812079fd8a7283bd8b246c1e763c7eddffbb"
+          },
+          {
+            "score": 7.6,
+            "date": "2026-04-25T11:34:24Z",
+            "commit": "e54a09440aceb3d1c46153b0a9c0dedb46895c08"
           }
         ],
         "current": {
-          "score": 7.6,
-          "date": "2026-04-25T11:34:24Z",
-          "commit": "e54a09440aceb3d1c46153b0a9c0dedb46895c08"
+          "score": 7.5,
+          "date": "2026-05-09T04:51:16Z",
+          "commit": "0d6c8d196fe9b7fd174a027154e1d08bfcab3004"
         }
       },
       "load-available-actions": {
