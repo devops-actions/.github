@@ -1723,12 +1723,17 @@
             "score": 6.2,
             "date": "2026-04-04T03:55:26Z",
             "commit": "d581a3ec246a8ddf52f19b7d05f50f5371c205e9"
+          },
+          {
+            "score": 5.9,
+            "date": "2026-04-25T04:14:17Z",
+            "commit": "63ea847bcbe6e45d58660b3a0b13861255eda13b"
           }
         ],
         "current": {
-          "score": 5.9,
-          "date": "2026-04-25T04:14:17Z",
-          "commit": "63ea847bcbe6e45d58660b3a0b13861255eda13b"
+          "score": 6.5,
+          "date": "2026-05-16T04:47:21Z",
+          "commit": "11c04bb4255280666d2efb8b3efd14fe175b40f4"
         }
       },
       "load-dependents-count": {
