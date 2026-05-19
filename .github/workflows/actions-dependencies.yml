@@ -31,6 +31,6 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: jessehouwing/actions-dependency-submission@4b3b919802f8dd2c071602d8922f6ddb07313f2a # v1.0.12
+      - uses: jessehouwing/actions-dependency-submission@19481049f19a8b6d54adbde7c323de5184b8bab5 # v1.0.14
         with:
           token: "${{ secrets.token != '' && secrets.token || secrets.GITHUB_TOKEN }}"
