@@ -1,0 +1,1 @@
+This repository uses Copilot workspace instructions.\n\nSee: .github/copilot-instructions.md\n
