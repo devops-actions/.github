@@ -2,11 +2,6 @@ name: Validate npm Token
 
 on:
   workflow_dispatch:
-    inputs:
-      token:
-        description: 'GitHub token with read:packages scope to test (leave empty to use repo secret NPM_TOKEN)'
-        required: false
-        type: string
 
   push:
     paths:
@@ -21,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0
+        uses: step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d # v2.16.1
         with:
           egress-policy: audit
 
@@ -35,4 +30,4 @@ jobs:
       - name: Install @devops-actions/actions-marketplace-client
         run: npm install @devops-actions/actions-marketplace-client
         env:
-          NODE_AUTH_TOKEN: ${{ inputs.token != '' && inputs.token || secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
