@@ -207,12 +207,17 @@
             "score": 7.6,
             "date": "2026-04-25T11:34:24Z",
             "commit": "e54a09440aceb3d1c46153b0a9c0dedb46895c08"
+          },
+          {
+            "score": 7.5,
+            "date": "2026-05-09T04:51:16Z",
+            "commit": "0d6c8d196fe9b7fd174a027154e1d08bfcab3004"
           }
         ],
         "current": {
-          "score": 7.5,
-          "date": "2026-05-09T04:51:16Z",
-          "commit": "0d6c8d196fe9b7fd174a027154e1d08bfcab3004"
+          "score": 6.5,
+          "date": "2026-05-19T06:04:03Z",
+          "commit": "a49e5e6c1ae1d6bb03fa0748569a21e387d7df62"
         }
       },
       "load-available-actions": {
@@ -983,12 +988,17 @@
             "score": 7.2,
             "date": "2026-04-12T19:19:57Z",
             "commit": "8033b8c3a9b1b0d2ef69b5c647b44ec69c495cda"
+          },
+          {
+            "score": 7.3,
+            "date": "2026-04-18T04:12:44Z",
+            "commit": "fceb4ba98e75e4875ddf01b5626e3b7f5b47e442"
           }
         ],
         "current": {
-          "score": 7.3,
-          "date": "2026-04-18T04:12:44Z",
-          "commit": "fceb4ba98e75e4875ddf01b5626e3b7f5b47e442"
+          "score": 7.2,
+          "date": "2026-05-19T06:23:47Z",
+          "commit": "8b6faaf28e937e3f044793b1433d8fe3396310dc"
         }
       },
       "load-used-actions": {
@@ -1635,12 +1645,17 @@
             "score": 6.4,
             "date": "2026-04-11T10:28:48Z",
             "commit": "bba77dd77f77cdc5f1e5d5f058b8b43fae81a3c2"
+          },
+          {
+            "score": 6.7,
+            "date": "2026-04-18T04:15:55Z",
+            "commit": "bba77dd77f77cdc5f1e5d5f058b8b43fae81a3c2"
           }
         ],
         "current": {
-          "score": 6.7,
-          "date": "2026-04-18T04:15:55Z",
-          "commit": "bba77dd77f77cdc5f1e5d5f058b8b43fae81a3c2"
+          "score": 6.6,
+          "date": "2026-05-19T05:57:02Z",
+          "commit": "b8f3413822b17cdb7fecdc1ae43a728c0e135e1a"
         }
       },
       "github-copilot-pr-analysis": {
@@ -1704,12 +1719,17 @@
             "score": 6.6,
             "date": "2026-03-28T03:57:42Z",
             "commit": "aa9187c810b4e468a261ce5b56e029a23d6643f2"
+          },
+          {
+            "score": 6.7,
+            "date": "2026-04-18T04:10:15Z",
+            "commit": "9e7e402b513f17791bb95c6e578a1bab88d09185"
           }
         ],
         "current": {
-          "score": 6.7,
-          "date": "2026-04-18T04:10:15Z",
-          "commit": "9e7e402b513f17791bb95c6e578a1bab88d09185"
+          "score": 6.6,
+          "date": "2026-05-19T06:26:29Z",
+          "commit": "176eebc8eb7726e7f4609f73137a0cbbb11415c0"
         }
       },
       "secure-action-inputs": {
@@ -1723,12 +1743,17 @@
             "score": 6.2,
             "date": "2026-04-04T03:55:26Z",
             "commit": "d581a3ec246a8ddf52f19b7d05f50f5371c205e9"
+          },
+          {
+            "score": 5.9,
+            "date": "2026-04-25T04:14:17Z",
+            "commit": "63ea847bcbe6e45d58660b3a0b13861255eda13b"
           }
         ],
         "current": {
-          "score": 5.9,
-          "date": "2026-04-25T04:14:17Z",
-          "commit": "63ea847bcbe6e45d58660b3a0b13861255eda13b"
+          "score": 6.5,
+          "date": "2026-05-16T04:47:21Z",
+          "commit": "11c04bb4255280666d2efb8b3efd14fe175b40f4"
         }
       },
       "load-dependents-count": {
