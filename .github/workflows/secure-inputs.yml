@@ -1,0 +1,41 @@
+name: Secure Action Inputs Scan
+
+# Reusable workflow that scans the GitHub event payload for known attack vectors:
+# - Hidden Unicode characters (incl. Unicode Tag Characters for AI instruction embedding)
+# - Bidirectional text attacks (Trojan Source)
+# - Shell injection patterns
+# - Script/template injection
+# - Prompt injection targeting AI agents in CI/CD
+# - Homoglyph (lookalike character) attacks
+#
+# Reference research: https://github.com/devops-actions/secure-action-inputs
+#
+# Callers: add .github/workflows/secure-inputs.yml in each repo, triggering on
+# pull_request, issues, and issue_comment events.
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  scan-inputs:
+    name: Scan event payload for attack vectors
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d # v2.16.1
+        with:
+          egress-policy: audit
+
+      - name: Scan event inputs for attack vectors
+        # Scans the full GitHub event payload (GITHUB_EVENT_PATH) for:
+        # - Hidden Unicode incl. Tag Characters (U+E0000-E007F) — AI instruction embedding
+        # - Variation Selectors Supplement (U+E0100-E01EF) — Glassworm attack vector
+        # - BiDi overrides (Trojan Source), shell injection, template injection
+        # - Prompt injection patterns targeting AI agents in CI/CD pipelines
+        # Pin to a specific SHA after the next release of secure-action-inputs.
+        uses: devops-actions/secure-action-inputs@main
