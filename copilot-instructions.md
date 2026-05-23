@@ -41,10 +41,16 @@ permissions:
   contents: read
 jobs:
   validate-examples:
-    uses: devops-actions/.github/.github/workflows/actions-example-checker.yml@main
+    uses: devops-actions/.github/.github/workflows/actions-example-checker.yml@b77cea6d7ba1cd4e001581783cc592bbb63ce46d # main
     permissions:
       contents: read
 ```
+
+**SHA pinning rule**: Always reference reusable workflows from the `.github` repo using the **full 40-character SHA** of the target branch, never `@main` or short hashes. Append `# main` as a comment to indicate the branch the SHA points to. Example:
+```
+uses: devops-actions/.github/.github/workflows/some-workflow.yml@b77cea6d7ba1cd4e001581783cc592bbb63ce46d # main
+```
+When updating the `.github` repo, update all callers to the new full SHA.
 
 When adding a new reusable workflow, add it to the `.github` repo first and then add the caller file to every action repo.
 
