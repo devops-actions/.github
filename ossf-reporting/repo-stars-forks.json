@@ -1,6 +1,6 @@
 {
   "devops-actions/action-get-tag": {
-    "forks": 4,
+    "forks": 5,
     "stars": 7
   },
   "devops-actions/action-template": {
@@ -48,7 +48,7 @@
     "stars": 0
   },
   "devops-actions/variable-substitution": {
-    "forks": 5,
+    "forks": 6,
     "stars": 9
   }
 }
