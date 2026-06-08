@@ -1701,12 +1701,17 @@
             "score": 6.6,
             "date": "2026-05-19T05:57:02Z",
             "commit": "b8f3413822b17cdb7fecdc1ae43a728c0e135e1a"
+          },
+          {
+            "score": 6.9,
+            "date": "2026-05-23T20:48:04Z",
+            "commit": "15114994ecca09ad605208b0d82d89cfdb50ca54"
           }
         ],
         "current": {
-          "score": 6.9,
-          "date": "2026-05-23T20:48:04Z",
-          "commit": "15114994ecca09ad605208b0d82d89cfdb50ca54"
+          "score": 7.6,
+          "date": "2026-06-06T05:33:22Z",
+          "commit": "c66679c4a6a51babdc0eb0c08e241c2826edcbfe"
         }
       },
       "github-copilot-pr-analysis": {
