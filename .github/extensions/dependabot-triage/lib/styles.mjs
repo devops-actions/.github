@@ -90,6 +90,16 @@ export const CSS = `
     margin-bottom: 8px;
   }
   .pr-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .pr-repo {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--true-color-blue, #0969da);
+    background: var(--true-color-blue-muted, rgba(9, 105, 218, 0.1));
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin-bottom: 4px;
+  }
   .pr-title a { color: var(--text-color-default, #1f2328); text-decoration: none; font-weight: 600; }
   .pr-title a:hover { text-decoration: underline; }
   .pr-meta { color: var(--text-color-muted, #656d76); font-size: 12px; margin-top: 2px; }
