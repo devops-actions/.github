@@ -45,6 +45,7 @@ function prCard(pr) {
     <div class="pr-card" data-repo="\${esc(pr.repo)}" data-number="\${pr.number}">
       <div class="pr-top">
         <div>
+          <div class="pr-repo">\${esc(pr.repo)}</div>
           <div class="pr-title"><a href="\${esc(pr.url)}" target="_blank" rel="noopener">#\${pr.number} \${esc(pr.title)}</a></div>
           <div class="pr-meta">\${esc(pr.headRefName)} → \${esc(pr.baseRefName)} · \${esc(pr.statusDetail || "")}</div>
         </div>
