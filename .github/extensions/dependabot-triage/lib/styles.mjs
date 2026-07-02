@@ -109,25 +109,35 @@ export const CSS = `
   .badge.pending { background: var(--true-color-yellow-muted, #fff1c2); color: var(--true-color-yellow, #9a6700); }
   .badge.draft { background: var(--n-3, #e8e8e8); color: var(--text-color-muted, #656d76); }
 
-  .checks { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .checks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 8px 0 0;
+    padding: 0;
+  }
   .chip {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     border-radius: 5px;
-    padding: 2px 7px;
-    font-size: 11px;
+    padding: 3px 8px;
+    font-size: 12px;
     border: 1px solid transparent;
   }
+  .chip .icon { flex-shrink: 0; font-weight: 700; width: 1.1em; text-align: center; }
+  .chip .name { flex: 1; overflow-wrap: anywhere; }
   .chip.pass { background: var(--true-color-green-muted, #d1f0d1); color: var(--true-color-green, #1a7f37); }
   .chip.fail { background: var(--true-color-red-muted, #ffd8d3); color: var(--true-color-red, #cf222e); }
   .chip.pending { background: var(--true-color-yellow-muted, #fff1c2); color: var(--true-color-yellow, #9a6700); }
   .chip .req {
+    flex-shrink: 0;
     font-size: 9px;
     font-weight: 700;
     background: rgba(0,0,0,0.15);
     border-radius: 3px;
-    padding: 0 4px;
+    padding: 1px 5px;
   }
 
   .empty { color: var(--text-color-muted, #656d76); padding: 24px 0; text-align: center; }

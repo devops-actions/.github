@@ -18,17 +18,27 @@ function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
+const OUTCOME_ICON = { fail: "✗", pending: "…", pass: "✓" };
+
 function chip(check) {
   const reqBadge = check.required === true ? '<span class="req">REQ</span>' : "";
-  return \`<span class="chip \${check.outcome}" title="\${esc(check.workflowName || "")}">\${esc(check.name)} \${reqBadge}</span>\`;
+  const icon = OUTCOME_ICON[check.outcome] || "?";
+  return \`<li class="chip \${check.outcome}" title="\${esc(check.workflowName || "")}"><span class="icon">\${icon}</span><span class="name">\${esc(check.name)}</span>\${reqBadge}</li>\`;
+}
+
+// Order: failing checks first, then pending, then passing — so the checks
+// that need attention are at the top of the list instead of buried below
+// a wall of green passes.
+const OUTCOME_ORDER = { fail: 0, pending: 1, pass: 2 };
+function sortChecks(checks) {
+  return [...checks].sort((a, b) => OUTCOME_ORDER[a.outcome] - OUTCOME_ORDER[b.outcome]);
 }
 
 function prCard(pr) {
   const label = STATUS_LABELS[pr.status] || pr.status;
   const canStartSession = pr.status === "blocked-required" || pr.status === "blocked-non-required" || pr.status === "pending";
-  const failingOrPending = pr.checks.filter((c) => c.outcome !== "pass");
   const checksHtml = pr.checks.length
-    ? \`<div class="checks">\${pr.checks.map(chip).join("")}</div>\`
+    ? \`<ul class="checks">\${sortChecks(pr.checks).map(chip).join("")}</ul>\`
     : '<div class="checks pr-meta">No checks reported.</div>';
 
   return \`
