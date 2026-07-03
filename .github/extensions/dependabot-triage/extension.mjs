@@ -95,8 +95,18 @@ function buildStartSessionPrompt(pr) {
         `Checks of concern:`,
         checkLines,
         ``,
-        `Please open/create a session for devops-actions/${pr.repo} (use create_session or open_pr_session) to look into why the check(s) above are failing or pending, and fix or advise on next steps.`,
+        `IMPORTANT: Do not investigate this in the current conversation. Immediately open a NEW, separate session for devops-actions/${pr.repo} using the open_pr_session tool (repo_full_name: "devops-actions/${pr.repo}", pr_number: ${pr.number}) — or create_session if that fails (e.g. because the repo isn't registered as a project yet, in which case create the project first with create_project({ github_repo: "devops-actions/${pr.repo}" }) and then create_session or open_pr_session). Do the actual investigation and fix in that new session, not here. Once the new session is running, briefly confirm here which session/PR you started and stop — don't do further work in this conversation.`,
     ].join("\n");
+}
+
+/**
+ * Short, single-line label shown in this session's timeline for a start-session
+ * request. The full context above still goes to the agent via `prompt`, but the
+ * timeline only needs to show what was requested, not the whole briefing —
+ * that avoids flooding the current conversation with a wall of text.
+ */
+function buildStartSessionDisplayPrompt(pr) {
+    return `🔍 Open a new session to investigate devops-actions/${pr.repo}#${pr.number} (blocked Dependabot PR)`;
 }
 
 async function startServer(instanceId, session) {
@@ -138,9 +148,19 @@ async function startServer(instanceId, session) {
             if (req.method === "POST" && url.pathname === "/api/start-session") {
                 const pr = await readJsonBody(req);
                 const prompt = buildStartSessionPrompt(pr);
-                session.send({ prompt }).catch((error) => {
-                    session.log(`dependabot-triage: session.send failed: ${error.message}`, { level: "error" });
-                });
+                const displayPrompt = buildStartSessionDisplayPrompt(pr);
+                // Extensions have no privileged access to host session-management tools
+                // (create_session / open_pr_session are agent-only), so the only way to
+                // get a brand-new session opened is to hand the request to the agent via
+                // session.send() and instruct it (see buildStartSessionPrompt) to open a
+                // *separate* session rather than acting inline here. `agentMode: "autopilot"`
+                // + `mode: "immediate"` make that hand-off happen right away without the
+                // request sitting in a queue or requiring plan-mode approval.
+                session
+                    .send({ prompt, displayPrompt, mode: "immediate", agentMode: "autopilot" })
+                    .catch((error) => {
+                        session.log(`dependabot-triage: session.send failed: ${error.message}`, { level: "error" });
+                    });
                 sendJson(res, 200, { ok: true });
                 return;
             }
