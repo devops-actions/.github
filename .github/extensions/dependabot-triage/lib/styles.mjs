@@ -153,14 +153,47 @@ export const CSS = `
   .empty { color: var(--text-color-muted, #656d76); padding: 24px 0; text-align: center; }
   .loading { color: var(--text-color-muted, #656d76); padding: 24px 0; text-align: center; }
 
-  .merge-results {
+  /* Popup panel shown after "Merge all green" completes; auto-dismisses
+     itself (see client.mjs showToast/hideToast) and is appended directly
+     to <body> so it survives #app re-renders. */
+  #toast {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    max-width: 360px;
+    max-height: 60vh;
+    overflow-y: auto;
+    background: var(--background-color-default, #fff);
     border: 1px solid var(--border-color-default, #d0d7de);
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     padding: 10px 14px;
-    margin-bottom: 16px;
     font-size: 12px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
-  .merge-results .row { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; }
-  .merge-results .row.fail { color: var(--true-color-red, #cf222e); }
-  .merge-results .row.ok { color: var(--true-color-green, #1a7f37); }
+  #toast.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  #toast .toast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  #toast .toast-close {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    color: var(--text-color-muted, #656d76);
+    padding: 2px;
+  }
+  #toast .row { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; }
+  #toast .row.fail { color: var(--true-color-red, #cf222e); }
+  #toast .row.ok { color: var(--true-color-green, #1a7f37); }
 `;
