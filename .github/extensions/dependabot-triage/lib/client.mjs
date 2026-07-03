@@ -177,7 +177,7 @@ function render() {
       const repo = card.getAttribute("data-repo");
       const number = card.getAttribute("data-number");
       const pr = data.prs.find((p) => p.repo === repo && String(p.number) === number);
-      startSession(pr);
+      startSession(pr, e.target);
     });
   });
 }
@@ -218,17 +218,40 @@ async function mergeAllGreen() {
   }
 }
 
-async function startSession(pr) {
+async function startSession(pr, btn) {
   if (!pr) return;
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = "Requesting…";
+  }
   try {
     await fetch("/api/start-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(pr),
     });
-    alert("Sent to Copilot chat — check the conversation for the new request.");
+    if (btn) {
+      btn.textContent = "Session requested ✓";
+    }
+    showToast(\`
+      <div class="toast-header">
+        <span>New session requested</span>
+        <button class="toast-close" title="Dismiss">✕</button>
+      </div>
+      <div class="row ok">Copilot is opening a separate session for <strong>\${esc(pr.repo)}#\${esc(pr.number)}</strong> — check your session list shortly.</div>
+    \`);
   } catch (err) {
-    alert("Could not start session: " + err.message);
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Start session";
+    }
+    showToast(\`
+      <div class="toast-header">
+        <span>Could not start session</span>
+        <button class="toast-close" title="Dismiss">✕</button>
+      </div>
+      <div class="row fail">\${esc(err.message)}</div>
+    \`);
   }
 }
 
