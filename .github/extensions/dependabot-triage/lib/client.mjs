@@ -12,7 +12,7 @@ const STATUS_LABELS = {
 };
 
 const app = document.getElementById("app");
-let state = { loading: true, data: null, mergeResults: null, merging: false, refreshing: false };
+let state = { loading: true, data: null, merging: false, refreshing: false };
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -84,21 +84,47 @@ function errorsBanner(errors) {
     </details>\`;
 }
 
-function mergeResultsHtml(mr) {
-  if (!mr) return "";
+function mergeToastHtml(mr) {
   const rows = mr.results
     .map(
       (r) =>
-        \`<div class="row \${r.success ? "ok" : "fail"}"><span>\${esc(r.repo)} #\${r.number} \${esc(r.title)}</span><span>\${
+        \`<div class="row \${r.success ? "ok" : "fail"}"><span>\${esc(r.repo)} #\${r.number}</span><span>\${
           r.success ? "✓ merged" + (r.usedAutoMerge ? " (auto-merge queued)" : "") : "✗ " + esc(r.message)
         }</span></div>\`
     )
     .join("");
   return \`
-    <div class="merge-results">
-      <strong>Merge all green:</strong> attempted \${mr.attempted}, merged \${mr.merged}, failed \${mr.failed}
-      \${rows}
-    </div>\`;
+    <div class="toast-header">
+      <span>\${mr.merged} of \${mr.attempted} PR\${mr.attempted === 1 ? "" : "s"} merged</span>
+      <button class="toast-close" title="Dismiss">✕</button>
+    </div>
+    \${rows}\`;
+}
+
+// Popup panel showing merge results, auto-dismissed after \`ms\` (default 10s).
+// A manual close button also clears the pending auto-dismiss timer.
+let toastTimer = null;
+function showToast(html, ms = 10000) {
+  let toast = document.getElementById("toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = html;
+  toast.classList.add("visible");
+  const closeBtn = toast.querySelector(".toast-close");
+  if (closeBtn) closeBtn.addEventListener("click", hideToast);
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, ms);
+}
+function hideToast() {
+  const toast = document.getElementById("toast");
+  if (toast) toast.classList.remove("visible");
+  if (toastTimer) {
+    clearTimeout(toastTimer);
+    toastTimer = null;
+  }
 }
 
 function groupByRepo(prs) {
@@ -140,7 +166,6 @@ function render() {
     </div>
     \${summaryHtml(data)}
     \${errorsBanner(data.errors)}
-    \${mergeResultsHtml(state.mergeResults)}
     \${groupsHtml}
   \`;
 
@@ -168,7 +193,6 @@ async function refresh() {
   try {
     const res = await fetch("/api/refresh", { method: "POST" });
     state.data = await res.json();
-    state.mergeResults = null;
   } catch (err) {
     alert("Refresh failed: " + err.message);
   } finally {
@@ -184,8 +208,8 @@ async function mergeAllGreen() {
   try {
     const res = await fetch("/api/merge-all-green", { method: "POST" });
     const payload = await res.json();
-    state.mergeResults = payload.mergeResult;
     state.data = payload.data;
+    showToast(mergeToastHtml(payload.mergeResult));
   } catch (err) {
     alert("Merge failed: " + err.message);
   } finally {
