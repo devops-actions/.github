@@ -222,12 +222,17 @@
             "score": 6.6,
             "date": "2026-05-24T08:10:25Z",
             "commit": "79f55f14566535156aec6699a0b8ef3a77cfae6f"
+          },
+          {
+            "score": 6.5,
+            "date": "2026-06-20T05:55:28Z",
+            "commit": "cb2c33c4ba4c0fe45f5b594cc57d7fe61c69d2f5"
           }
         ],
         "current": {
-          "score": 6.5,
-          "date": "2026-06-20T05:55:28Z",
-          "commit": "cb2c33c4ba4c0fe45f5b594cc57d7fe61c69d2f5"
+          "score": 7.4,
+          "date": "2026-07-11T19:03:58Z",
+          "commit": "8f20f60f8e8b0cb1a77fa8fa79cb40c0b102b386"
         }
       },
       "load-available-actions": {
@@ -411,12 +416,17 @@
             "score": 7.6,
             "date": "2026-05-23T21:31:26Z",
             "commit": "e7c1bf57dfbc6cc68e5ebe3363fba6dd44cada99"
+          },
+          {
+            "score": 7.1,
+            "date": "2026-06-20T05:57:14Z",
+            "commit": "b766b1ab51e2e4f91da815cd0d70e61440fc1438"
           }
         ],
         "current": {
-          "score": 7.1,
-          "date": "2026-06-20T05:57:14Z",
-          "commit": "b766b1ab51e2e4f91da815cd0d70e61440fc1438"
+          "score": 7.5,
+          "date": "2026-07-11T04:45:02Z",
+          "commit": "a8cff0f883173e22a8115d3d22a9adc1241a9a1e"
         }
       },
       "issue-comment-tag": {
@@ -605,12 +615,17 @@
             "score": 6.7,
             "date": "2026-05-23T20:51:39Z",
             "commit": "4e539725b6b66bf942af34980d675b465b87073f"
+          },
+          {
+            "score": 6.2,
+            "date": "2026-06-20T05:53:57Z",
+            "commit": "fbbc672aee41ed61c2111e81031cb072e7629e3a"
           }
         ],
         "current": {
-          "score": 6.2,
-          "date": "2026-06-20T05:53:57Z",
-          "commit": "fbbc672aee41ed61c2111e81031cb072e7629e3a"
+          "score": 6.6,
+          "date": "2026-07-11T18:32:00Z",
+          "commit": "05a302852f8731fcc34ef84e2131850fc9dfa963"
         }
       },
       "action-get-tag": {
@@ -1043,12 +1058,17 @@
             "score": 7.5,
             "date": "2026-05-23T20:53:51Z",
             "commit": "22814ce2e5c1ab96cc6c2279b7f772f13a11997d"
+          },
+          {
+            "score": 6.9,
+            "date": "2026-06-20T05:53:16Z",
+            "commit": "9fe8b5ae016797589ee40e455ea8f056ebfe7c2e"
           }
         ],
         "current": {
-          "score": 6.9,
-          "date": "2026-06-20T05:53:16Z",
-          "commit": "9fe8b5ae016797589ee40e455ea8f056ebfe7c2e"
+          "score": 7.7,
+          "date": "2026-07-11T18:34:08Z",
+          "commit": "4bccca36117e0c0bce03c5125c9ac4c05524ae37"
         }
       },
       "load-used-actions": {
@@ -1227,12 +1247,17 @@
             "score": 7.5,
             "date": "2026-05-23T20:54:39Z",
             "commit": "bda06e3704e598a0143a4ce9064f5d2293436ccf"
+          },
+          {
+            "score": 7.2,
+            "date": "2026-06-20T06:42:40Z",
+            "commit": "cd1754619d526d3a0b98a26633e08827bc4a5f51"
           }
         ],
         "current": {
-          "score": 7.2,
-          "date": "2026-06-20T06:42:40Z",
-          "commit": "cd1754619d526d3a0b98a26633e08827bc4a5f51"
+          "score": 7.5,
+          "date": "2026-07-11T18:38:09Z",
+          "commit": "00ed1de26a8689e662daf00d40636166de1b6f97"
         }
       },
       "actionlint": {
@@ -1445,12 +1470,17 @@
             "score": 5.3,
             "date": "2023-06-10",
             "commit": "2d36c375d37dfe4b9bd08bacb5bae3728b201d2f"
+          },
+          {
+            "score": 5.1,
+            "date": "2026-05-23T20:47:41Z",
+            "commit": "561dfd2a08176b108847934fa77c3798ddde0cc5"
           }
         ],
         "current": {
-          "score": 5.1,
-          "date": "2026-05-23T20:47:41Z",
-          "commit": "561dfd2a08176b108847934fa77c3798ddde0cc5"
+          "score": 5.2,
+          "date": "2026-07-11T04:46:06Z",
+          "commit": "e7029be841ee8a932132b1f26cfb15542d4e4579"
         }
       },
       "variable-substitution": {
@@ -1569,12 +1599,17 @@
             "score": 7.8,
             "date": "2026-05-23T20:49:19Z",
             "commit": "cdf8639f3c6c4efd685c8f3c0650f6aef017b0ad"
+          },
+          {
+            "score": 7.5,
+            "date": "2026-06-20T06:43:35Z",
+            "commit": "dcf7185b3a0702c32f23ce2a6b385e8ca8637bcc"
           }
         ],
         "current": {
-          "score": 7.5,
-          "date": "2026-06-20T06:43:35Z",
-          "commit": "dcf7185b3a0702c32f23ce2a6b385e8ca8637bcc"
+          "score": 7.8,
+          "date": "2026-07-11T18:32:56Z",
+          "commit": "f2d0e64e190b1d7a22e54cd01a545ad29d89c268"
         }
       },
       "docker-action-demo2": {
@@ -1746,12 +1781,17 @@
             "score": 7.6,
             "date": "2026-06-06T05:33:22Z",
             "commit": "c66679c4a6a51babdc0eb0c08e241c2826edcbfe"
+          },
+          {
+            "score": 7.2,
+            "date": "2026-06-20T05:57:18Z",
+            "commit": "c66679c4a6a51babdc0eb0c08e241c2826edcbfe"
           }
         ],
         "current": {
-          "score": 7.2,
-          "date": "2026-06-20T05:57:18Z",
-          "commit": "c66679c4a6a51babdc0eb0c08e241c2826edcbfe"
+          "score": 7.5,
+          "date": "2026-07-11T04:45:08Z",
+          "commit": "0a7eff31d43c4bea56479f5a2c9dc7810a8b5e8d"
         }
       },
       "github-copilot-pr-analysis": {
@@ -1878,12 +1918,17 @@
             "score": 5.9,
             "date": "2026-03-30T19:52:31Z",
             "commit": "eb6cd1f5203ddaf6aa4ea382a63d4e260f7f78ba"
+          },
+          {
+            "score": 6.9,
+            "date": "2026-03-31T08:17:24Z",
+            "commit": "d77673c95f4bc2d87a662f3195f437d4b2e41872"
           }
         ],
         "current": {
-          "score": 6.9,
-          "date": "2026-03-31T08:17:24Z",
-          "commit": "d77673c95f4bc2d87a662f3195f437d4b2e41872"
+          "score": 7.7,
+          "date": "2026-07-11T18:11:24Z",
+          "commit": "03b95af4ddc7d61f8a9191b59b33e65d894c8542"
         }
       }
     }
