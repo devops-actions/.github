@@ -13,7 +13,7 @@
   },
   "devops-actions/azure-appservice-settings": {
     "forks": 3,
-    "stars": 1
+    "stars": 2
   },
   "devops-actions/github-copilot-pr-analysis": {
     "forks": 1,
@@ -37,7 +37,7 @@
   },
   "devops-actions/load-runner-info": {
     "forks": 9,
-    "stars": 17
+    "stars": 18
   },
   "devops-actions/load-used-actions": {
     "forks": 8,
