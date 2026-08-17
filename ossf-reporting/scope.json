@@ -3,18 +3,8 @@
     "devops-actions": {
       "included": [
         "action-get-tag",
-        "actionlint",
         "azure-appservice-settings",
-        "github-copilot-pr-analysis",
-        "issue-comment-tag",
-        "json-to-file",
-        "load-available-actions",
-        "load-dependents-count",
-        "load-runner-info",
-        "load-used-actions",
-        "secure-action-inputs",
-        "variable-substitution",
-        "action-template"
+        "variable-substitution"
       ],
       "excluded": []
     }
