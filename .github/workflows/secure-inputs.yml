@@ -39,4 +39,4 @@ jobs:
         # - Variation Selectors Supplement (U+E0100-E01EF) — Glassworm attack vector
         # - BiDi overrides (Trojan Source), shell injection, template injection
         # - Prompt injection patterns targeting AI agents in CI/CD pipelines
-        uses: devops-actions/secure-action-inputs@3df878569802f4bacce7a734f36a08d3a47e1741 # v1.0.1
+        uses: devops-actions/secure-action-inputs@cb01bf6456266ddcdef55ec8ff462da3be159dd2 # v1.0.2
