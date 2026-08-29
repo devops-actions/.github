@@ -43,6 +43,30 @@ jobs:
             echo "token=$GITHUB_TOKEN" > "$GITHUB_OUTPUT"
           fi
           
+      - name: Verify all commits are authored by Dependabot
+        if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+        env:
+          GH_TOKEN: ${{ steps.get-token.outputs.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          # security check: only auto-merge when every commit on the PR was created by dependabot[bot],
+          # otherwise someone with write access could piggy-back a malicious commit onto a dependabot branch
+          set -euo pipefail
+          offenders=$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER/commits" --paginate \
+            --jq '[.[] | select(
+                (.author.login // "") != "dependabot[bot]" or
+                (.committer.login // "") != "dependabot[bot]" or
+                (.commit.author.name // "") != "dependabot[bot]" or
+                (.commit.committer.name // "") != "dependabot[bot]"
+              ) | .sha] | .[]')
+          if [[ -n "$offenders" ]]; then
+            echo "Refusing to auto-merge: found commits not created by dependabot[bot]:"
+            echo "$offenders"
+            exit 1
+          fi
+          echo "All commits on this PR were created by dependabot[bot]."
+
       - name: Load Dependabot metadata
         if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
         id: metadata
