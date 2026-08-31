@@ -56,9 +56,8 @@ jobs:
           offenders=$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER/commits" --paginate \
             --jq '[.[] | select(
                 (.author.login // "") != "dependabot[bot]" or
-                (.committer.login // "") != "dependabot[bot]" or
                 (.commit.author.name // "") != "dependabot[bot]" or
-                (.commit.committer.name // "") != "dependabot[bot]"
+                ((.commit.author.email // "") | contains("dependabot[bot]") | not)
               ) | .sha] | .[]')
           if [[ -n "$offenders" ]]; then
             echo "Refusing to auto-merge: found commits not created by dependabot[bot]:"
