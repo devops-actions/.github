@@ -21,6 +21,7 @@ jobs:
       ecosystem: ${{ steps.metadata.outputs.package-ecosystem }}
       update-type: ${{ steps.metadata.outputs.update-type }}
       token: ${{ steps.get-token.outputs.token }}
+      token-kind: ${{ steps.get-token.outputs.token-kind }}
     steps:
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
@@ -38,9 +39,11 @@ jobs:
           if [[ "$GH_TOKEN" ]]; then
             echo "Using GH_TOKEN"
             echo "token=$GH_TOKEN" > "$GITHUB_OUTPUT"
+            echo "token-kind=gh-token" >> "$GITHUB_OUTPUT"
           else 
             echo "Using GITHUB_TOKEN"
             echo "token=$GITHUB_TOKEN" > "$GITHUB_OUTPUT"
+            echo "token-kind=github-token" >> "$GITHUB_OUTPUT"
           fi
           
       - name: Verify all commits are authored by Dependabot
@@ -109,10 +112,22 @@ jobs:
       
       - name: Enable auto-merge for Dependabot PRs
         if: (github.event.pull_request.user.login == 'dependabot[bot]' || needs.dependabot-check.outputs.ecosystem == 'github-actions') && (needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch')
-        run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN_KIND: ${{ needs.dependabot-check.outputs.token-kind }}
+        run: |
+          set -euo pipefail
+          touches_workflows=$(gh pr view "$PR_URL" --json files --jq '[.files[].path | startswith(".github/workflows/")] | any')
+          if [[ "$TOKEN_KIND" == "github-token" && "$touches_workflows" == "true" ]]; then
+            # GITHUB_TOKEN is a GitHub App token that cannot hold the 'workflows' permission, so it cannot
+            # enable auto-merge on PRs that modify files in .github/workflows. Warn and skip instead of failing,
+            # so a human can merge manually. Configure the GH_TOKEN Dependabot secret (a token with the
+            # 'workflow' scope) to automate these merges again.
+            echo "::warning::Skipping auto-merge: GITHUB_TOKEN cannot merge PRs that modify .github/workflows. Merge manually or configure the GH_TOKEN Dependabot secret."
+            exit 0
+          fi
+          gh pr merge --auto --merge "$PR_URL"
           
   dependabot-other:
     runs-on: ubuntu-latest
@@ -137,10 +152,22 @@ jobs:
       
       - name: Enable auto-merge for Dependabot PRs
         if: (github.event.pull_request.user.login == 'dependabot[bot]' || needs.dependabot-check.outputs.ecosystem == 'github-actions') && (needs.dependabot-check.outputs.update-type == 'version-update:semver-minor' || needs.dependabot-check.outputs.update-type == 'version-update:semver-patch')
-        run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOKEN_KIND: ${{ needs.dependabot-check.outputs.token-kind }}
+        run: |
+          set -euo pipefail
+          touches_workflows=$(gh pr view "$PR_URL" --json files --jq '[.files[].path | startswith(".github/workflows/")] | any')
+          if [[ "$TOKEN_KIND" == "github-token" && "$touches_workflows" == "true" ]]; then
+            # GITHUB_TOKEN is a GitHub App token that cannot hold the 'workflows' permission, so it cannot
+            # enable auto-merge on PRs that modify files in .github/workflows. Warn and skip instead of failing,
+            # so a human can merge manually. Configure the GH_TOKEN Dependabot secret (a token with the
+            # 'workflow' scope) to automate these merges again.
+            echo "::warning::Skipping auto-merge: GITHUB_TOKEN cannot merge PRs that modify .github/workflows. Merge manually or configure the GH_TOKEN Dependabot secret."
+            exit 0
+          fi
+          gh pr merge --auto --merge "$PR_URL"
 
   not-dependabot:
     runs-on: ubuntu-latest
