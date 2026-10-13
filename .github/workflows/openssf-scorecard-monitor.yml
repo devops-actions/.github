@@ -1,6 +1,12 @@
 name: "OpenSSF Scorecard Monitor"
 on: 
   push:
+    # Only run on main: this workflow auto-commits and auto-pushes report updates
+    # to the checked-out branch. Running it on other branches (e.g. Dependabot PR
+    # branches, whose rebases can match the path filter below) pollutes those
+    # branches with bot commits and breaks Dependabot auto-merge verification.
+    branches:
+      - main
     paths:
     - .github/workflows/openssf-scorecard-monitor.yml
   schedule:
