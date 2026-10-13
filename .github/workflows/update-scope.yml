@@ -7,6 +7,11 @@ on:
   workflow_dispatch:
 
   push:
+    # Only run on main: running on other branches (e.g. Dependabot PR branches,
+    # whose rebases can match the path filter below) would create PRs from or
+    # against the wrong branch.
+    branches:
+      - main
     paths:
       - .github/workflows/update-scope.yml
 
