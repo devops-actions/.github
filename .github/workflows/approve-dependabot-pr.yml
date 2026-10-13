@@ -89,6 +89,7 @@ jobs:
       contents: write
       pull-requests: write
       actions: write #the updates for this ecosystem will push to the .github/workflows folder
+      workflows: write #required to approve/merge PRs that change files in .github/workflows
     steps:
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
@@ -122,6 +123,7 @@ jobs:
       contents: write
       pull-requests: write
       actions: read #the updates for this ecosystem will NOT push to the .github/workflows folder
+      workflows: write #this job also runs for github-actions updates (see step conditions), which DO touch .github/workflows
     steps:
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1

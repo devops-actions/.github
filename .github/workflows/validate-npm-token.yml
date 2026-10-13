@@ -20,7 +20,22 @@ jobs:
         with:
           egress-policy: audit
 
+      - name: Check if NPM_TOKEN is available
+        id: token-check
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [[ -z "$NODE_AUTH_TOKEN" ]]; then
+            # Secrets are not available in Dependabot-triggered runs unless configured as Dependabot secrets.
+            # Skip validation instead of failing: the token itself has not changed.
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::NPM_TOKEN secret is not available in this context (e.g. Dependabot push), skipping validation"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Setup Node.js with GitHub Packages registry
+        if: steps.token-check.outputs.available == 'true'
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '20'
@@ -28,6 +43,7 @@ jobs:
           scope: '@devops-actions'
 
       - name: Install @devops-actions/actions-marketplace-client
+        if: steps.token-check.outputs.available == 'true'
         run: npm install @devops-actions/actions-marketplace-client
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
