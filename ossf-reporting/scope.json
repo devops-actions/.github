@@ -5,6 +5,7 @@
         "action-get-tag",
         "actionlint",
         "azure-appservice-settings",
+        "docker-action-demo",
         "github-copilot-pr-analysis",
         "issue-comment-tag",
         "json-to-file",
@@ -13,8 +14,7 @@
         "load-runner-info",
         "load-used-actions",
         "secure-action-inputs",
-        "variable-substitution",
-        "action-template"
+        "variable-substitution"
       ],
       "excluded": []
     }
