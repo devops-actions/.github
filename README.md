@@ -19,6 +19,37 @@ This repository contains shared workflows that can be used across all `devops-ac
 📖 **Documentation**: [Release Automation Guide](./docs/RELEASE-AUTOMATION.md)  
 ⚡ **Quick Start**: [5-Minute Setup](./docs/RELEASE-AUTOMATION-QUICKSTART.md)
 
+### 🔏 Release with SBOM and attestations
+**Workflow**: `rw-release-attestation.yml`  
+**Purpose**: Publish an action's GitHub release with SBOMs and [artifact attestations](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations)
+
+**Features**:
+- Runs on the pushed tag; creates the release as a draft, uploads the files, verifies them and then publishes (works with immutable releases)
+- Attaches a `git archive` of the tag, `action.yml` and the files the action runs from (`runs.main`/`pre`/`post` or the `Dockerfile`)
+- Attaches SPDX and CycloneDX SBOMs (Syft) of the tagged source
+- Build provenance attestation for every asset, SBOM attestation for the archive and action files
+- Verifies all attestations, and the downloaded release assets, before publishing
+
+**Usage** (in a workflow triggered by `push: tags: ['v*']`):
+```yaml
+jobs:
+  release:
+    permissions:
+      contents: write       # create the release and upload its assets
+      id-token: write       # Sigstore keyless signing for the attestations
+      attestations: write   # store the attestations
+    uses: devops-actions/.github/.github/workflows/rw-release-attestation.yml@<sha> # main
+    # with:
+    #   extra-files: |       # optional extra committed files to attach and attest
+    #     dist/licenses.txt
+```
+
+**Verifying a release file** (the signer is this reusable workflow, so pass `--signer-workflow`):
+```shell
+gh attestation verify <file> --repo devops-actions/<repo> \
+  --signer-workflow devops-actions/.github/.github/workflows/rw-release-attestation.yml
+```
+
 ### 🏷️ Issue/PR Tagging
 **Workflow**: `issue-pr-tag.yml`  
 **Purpose**: Automatically tag team members in issues or pull requests
