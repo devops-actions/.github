@@ -1,0 +1,342 @@
+# Reusable workflow: publish a GitHub release for an action with SBOMs and artifact attestations.
+#
+# Call it from a workflow that runs on a tag push (or a workflow_dispatch run started ON a tag):
+#
+#   jobs:
+#     release:
+#       permissions:
+#         contents: write       # create the release and upload its assets
+#         id-token: write       # Sigstore keyless signing for the attestations
+#         attestations: write   # store the attestations
+#       uses: devops-actions/.github/.github/workflows/rw-release-attestation.yml@<sha> # main
+#
+# What it does, for the tag the run was started on:
+#   1. Packs the tagged source with `git archive` into <repo>-<tag>.tar.gz.
+#   2. Collects the files the action runs from: action.yml plus runs.main/pre/post (node
+#      actions) or the Dockerfile (docker actions), plus any `extra-files`. These are the
+#      committed bytes the runner executes, so a consumer can verify the file in their
+#      runner's action cache directly.
+#   3. Generates SPDX and CycloneDX SBOMs of the tagged source (lockfiles, committed
+#      node_modules, requirements.txt, ...) with Syft.
+#   4. Creates a SLSA build-provenance attestation for every release file (incl. the SBOMs)
+#      and an SBOM attestation binding the SPDX SBOM to the archive and the action files.
+#   5. Verifies every attestation, pinned to the caller repo, this reusable workflow, the tag
+#      and GitHub-hosted runners.
+#   6. Creates the release as a draft (unless one exists), uploads the files, downloads them
+#      again and verifies the downloaded bytes, and only then publishes the release. A draft
+#      is used so this also works with immutable releases enabled.
+#
+# Consumers verify a file with:
+#   gh attestation verify <file> --repo devops-actions/<repo> \
+#     --signer-workflow devops-actions/.github/.github/workflows/rw-release-attestation.yml
+# (The signer is this workflow in the .github repo, so `--repo` alone is not enough: pass
+# `--signer-workflow`, `--signer-repo devops-actions/.github` or use `--owner devops-actions`.)
+
+name: Release with SBOM and attestations
+
+on:
+  workflow_call:
+    inputs:
+      extra-files:
+        description: >-
+          Optional newline-separated paths or globs (relative to the repo root at the tag)
+          of additional committed files to attach to the release and attest.
+        type: string
+        required: false
+        default: ''
+      create-release:
+        description: >-
+          Create (and publish) the release when it does not exist yet. When false the
+          release must already exist; its assets are added but its state is left alone.
+        type: boolean
+        required: false
+        default: true
+    outputs:
+      release-url:
+        description: 'URL of the GitHub release'
+        value: ${{ jobs.release.outputs.release-url }}
+      release-created:
+        description: "'true' when this run created and published the release"
+        value: ${{ jobs.release.outputs.release-created }}
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Release, SBOM and attestations
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # create the release and upload its assets
+      id-token: write       # Sigstore keyless signing for the attestations
+      attestations: write   # store the attestations
+    outputs:
+      release-url: ${{ steps.publish.outputs.url }}
+      release-created: ${{ steps.release.outputs.created }}
+    env:
+      # The signer identity is this reusable workflow, not the caller's workflow file.
+      SIGNER_WORKFLOW: ${{ github.repository_owner }}/.github/.github/workflows/rw-release-attestation.yml
+
+    steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+        with:
+          egress-policy: audit
+
+      - name: Resolve the release tag
+        id: tag
+        run: |
+          # Provenance records the ref and commit the run was started on, so the run must be
+          # started on the tag itself; releasing a tag from a branch run would sign the
+          # wrong commit.
+          if [[ "$GITHUB_REF" != refs/tags/* ]]; then
+            echo "::error::Run this workflow on a tag (push a tag, or pick the tag under 'Use workflow from'). Got ref '$GITHUB_REF'."
+            exit 1
+          fi
+          tag="$GITHUB_REF_NAME"
+          if [[ ! "$tag" =~ ^[0-9A-Za-z._+-]+$ ]]; then
+            echo "::error::Unsupported characters in tag '$tag'."
+            exit 1
+          fi
+          repo_name="${GITHUB_REPOSITORY#*/}"
+          {
+            echo "tag=$tag"
+            echo "base-name=${repo_name}-${tag}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Checkout the tagged commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Collect the release files
+        id: files
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+          BASE_NAME: ${{ steps.tag.outputs.base-name }}
+          EXTRA_FILES: ${{ inputs.extra-files }}
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/release-files"
+          rm -rf "$out"
+          mkdir -p "$out"
+
+          # 1. Source archive of the tagged commit (what `uses: owner/repo@tag` fetches).
+          git archive --format=tar.gz --prefix="${BASE_NAME}/" -o "$out/${BASE_NAME}.tar.gz" HEAD
+
+          # 2. The files the action runs from.
+          files=()
+          action_file=""
+          for candidate in action.yml action.yaml; do
+            if [ -f "$candidate" ]; then action_file="$candidate"; break; fi
+          done
+          if [ -n "$action_file" ]; then
+            files+=("$action_file")
+            using="$(yq -r '.runs.using // ""' "$action_file")"
+            case "$using" in
+              node*)
+                for key in pre main post; do
+                  entry="$(yq -r ".runs.${key} // \"\"" "$action_file")"
+                  [ -n "$entry" ] && files+=("$entry")
+                done
+                ;;
+              docker)
+                image="$(yq -r '.runs.image // ""' "$action_file")"
+                if [ -n "$image" ] && [[ "$image" != docker://* ]]; then files+=("$image"); fi
+                ;;
+            esac
+          else
+            echo "::warning::No action.yml or action.yaml found; only attesting the source archive."
+          fi
+
+          # 3. Caller-provided extra files (globs allowed).
+          shopt -s nullglob globstar
+          while IFS= read -r pattern; do
+            pattern="${pattern#"${pattern%%[![:space:]]*}"}"
+            pattern="${pattern%"${pattern##*[![:space:]]}"}"
+            [ -z "$pattern" ] && continue
+            # Unquoted on purpose: expand the glob.
+            # shellcheck disable=SC2206
+            matches=( $pattern )
+            if [ ${#matches[@]} -eq 0 ]; then
+              echo "::error::extra-files pattern '$pattern' matches no file at $TAG"
+              exit 1
+            fi
+            files+=("${matches[@]}")
+          done <<< "$EXTRA_FILES"
+
+          # Copy into the flat release directory: basename, or the full path with '/' -> '-'
+          # when two files share a basename (e.g. dist/index.js and dist/post/index.js).
+          declare -A seen=()
+          for f in "${files[@]}"; do
+            f="${f#./}"
+            if [ ! -f "$f" ]; then
+              echo "::error::'$f' is referenced by the action but is not committed at $TAG"
+              exit 1
+            fi
+            [ -n "${seen[$f]:-}" ] && continue
+            seen[$f]=1
+            name="$(basename "$f")"
+            if [ -e "$out/$name" ]; then name="${f//\//-}"; fi
+            cp "$f" "$out/$name"
+          done
+
+          echo "dir=$out" >> "$GITHUB_OUTPUT"
+          echo "Release files:"
+          (cd "$out" && sha256sum -- *)
+
+      - name: Generate SPDX SBOM
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          path: .
+          format: spdx-json
+          output-file: ${{ steps.files.outputs.dir }}/${{ steps.tag.outputs.base-name }}.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Generate CycloneDX SBOM
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          path: .
+          format: cyclonedx-json
+          output-file: ${{ steps.files.outputs.dir }}/${{ steps.tag.outputs.base-name }}.cyclonedx.json
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: List attestation subjects
+        id: subjects
+        env:
+          OUT: ${{ steps.files.outputs.dir }}
+          BASE_NAME: ${{ steps.tag.outputs.base-name }}
+        run: |
+          set -euo pipefail
+          # Provenance covers every release file, the SBOMs included; the SBOM attestation
+          # covers the archive and the action files (not the SBOMs themselves).
+          {
+            echo "all<<EOF"
+            find "$OUT" -maxdepth 1 -type f | sort
+            echo "EOF"
+            echo "code<<EOF"
+            find "$OUT" -maxdepth 1 -type f ! -name "${BASE_NAME}.spdx.json" ! -name "${BASE_NAME}.cyclonedx.json" | sort
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Attest build provenance
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: ${{ steps.subjects.outputs.all }}
+
+      - name: Attest SBOM
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: ${{ steps.subjects.outputs.code }}
+          sbom-path: ${{ steps.files.outputs.dir }}/${{ steps.tag.outputs.base-name }}.spdx.json
+
+      - name: Verify attestations (local files)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ALL: ${{ steps.subjects.outputs.all }}
+          CODE: ${{ steps.subjects.outputs.code }}
+        run: |
+          set -euo pipefail
+          verify() {
+            gh attestation verify "$1" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$SIGNER_WORKFLOW" \
+              --source-ref "$GITHUB_REF" \
+              --deny-self-hosted-runners \
+              --predicate-type "$2" > /dev/null
+            echo "✅ $(basename "$1"): $2"
+          }
+          while IFS= read -r f; do verify "$f" https://slsa.dev/provenance/v1; done <<< "$ALL"
+          while IFS= read -r f; do verify "$f" https://spdx.dev/Document/v2.3; done <<< "$CODE"
+
+      - name: Create draft release and upload the files
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          OUT: ${{ steps.files.outputs.dir }}
+          CREATE_RELEASE: ${{ inputs.create-release }}
+        run: |
+          set -euo pipefail
+          created=false
+          if is_draft="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft 2>/dev/null)"; then
+            echo "Release $TAG already exists (draft: $is_draft); adding the files to it."
+          elif [ "$CREATE_RELEASE" = "true" ]; then
+            notes="$RUNNER_TEMP/release-header.md"
+            cat > "$notes" <<EOF
+          Release $TAG is available now.
+
+          ### Verifying this release
+          Every file attached to this release has a [build provenance attestation](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations), and the source archive and action files have an SBOM attestation (SPDX and CycloneDX SBOMs are attached). Verify a file with:
+
+          \`\`\`shell
+          gh attestation verify <file> --repo $GITHUB_REPOSITORY --signer-workflow $SIGNER_WORKFLOW
+          \`\`\`
+          EOF
+            # Draft first: assets can still be added when immutable releases are enabled.
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --draft \
+              --title "Release $TAG" --notes-file "$notes" --generate-notes
+            created=true
+          else
+            echo "::error::Release $TAG does not exist and create-release is false."
+            exit 1
+          fi
+
+          if ! gh release upload "$TAG" "$OUT"/* --repo "$GITHUB_REPOSITORY" --clobber; then
+            echo "::error::Uploading to release $TAG failed. An already published release cannot get new assets when immutable releases are enabled: push the tag without creating the release first, or create it as a draft."
+            exit 1
+          fi
+          echo "created=$created" >> "$GITHUB_OUTPUT"
+
+      - name: Verify the uploaded release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          OUT: ${{ steps.files.outputs.dir }}
+        run: |
+          set -euo pipefail
+          # Prove the bytes users download from the release are the attested bytes.
+          download="$RUNNER_TEMP/release-download"
+          rm -rf "$download"
+          mkdir -p "$download"
+          for f in "$OUT"/*; do
+            name="$(basename "$f")"
+            gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$name" --dir "$download" --clobber
+            gh attestation verify "$download/$name" \
+              --repo "$GITHUB_REPOSITORY" \
+              --signer-workflow "$SIGNER_WORKFLOW" \
+              --source-ref "$GITHUB_REF" \
+              --deny-self-hosted-runners \
+              --predicate-type https://slsa.dev/provenance/v1 > /dev/null
+            echo "✅ release asset $name"
+          done
+
+      - name: Publish the release
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          CREATED: ${{ steps.release.outputs.created }}
+        run: |
+          set -euo pipefail
+          # Only publish a draft this run created; a pre-existing draft stays a draft.
+          if [ "$CREATED" = "true" ]; then
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false
+          fi
+          url="$(gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url --jq .url)"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          {
+            echo "## 🔏 Release $TAG"
+            echo ""
+            echo "$url"
+            echo ""
+            echo "Assets (all with build provenance attestations):"
+            gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[] | "- `" + .name + "`"'
+            echo ""
+            echo "Verify with:"
+            echo '```shell'
+            echo "gh attestation verify <file> --repo $GITHUB_REPOSITORY --signer-workflow $SIGNER_WORKFLOW"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
