@@ -333,6 +333,8 @@ jobs:
             echo "$url"
             echo ""
             echo "Assets (all with build provenance attestations):"
+            # The backticks are literal Markdown in the jq output, not command substitution.
+            # shellcheck disable=SC2016
             gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[] | "- `" + .name + "`"'
             echo ""
             echo "Verify with:"
