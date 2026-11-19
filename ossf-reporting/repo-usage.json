@@ -1,15 +1,13 @@
 {
-  "devops-actions/action-get-tag": 807,
-  "devops-actions/action-template": 0,
-  "devops-actions/actionlint": 341,
+  "devops-actions/actionlint": 412,
   "devops-actions/azure-appservice-settings": 6,
   "devops-actions/github-copilot-pr-analysis": 2,
-  "devops-actions/issue-comment-tag": 235,
+  "devops-actions/issue-comment-tag": 280,
   "devops-actions/json-to-file": 58,
   "devops-actions/load-available-actions": 18,
   "devops-actions/load-dependents-count": 1,
   "devops-actions/load-runner-info": 5,
   "devops-actions/load-used-actions": 5,
   "devops-actions/secure-action-inputs": 1,
-  "devops-actions/variable-substitution": 74
+  "devops-actions/variable-substitution": 76
 }
