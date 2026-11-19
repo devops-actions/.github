@@ -18,6 +18,17 @@ function transformToScope(actionsData) {
   // Filter out archived repos but keep forks
   const repos = actionsData.actions
     .filter(action => !action.isArchived) // Exclude archived
+    // Only count actions defined by an action.yml/action.yaml: those always carry a `path`
+    // (an empty string for the repo root). load-available-actions also reports Dockerfiles
+    // with `LABEL com.github.actions.*` labels (the pre-action.yml format) without a path;
+    // `uses:` cannot run those, so they are not actions we publish.
+    .filter(action => {
+      const hasActionFile = typeof action.path === 'string';
+      if (!hasActionFile) {
+        console.log(`Skipping ${action.repo}: '${action.name}' has no action.yml/action.yaml (Dockerfile labels only)`);
+      }
+      return hasActionFile;
+    })
     .map(action => action.repo);
 
   // Get unique repo names and sort
