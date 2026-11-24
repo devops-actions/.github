@@ -26,7 +26,7 @@ jobs:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     # run the actionlinter
-    - uses: devops-actions/actionlint@216abcda9203ffeaeb953db1b151c94e1927c5bf # v1.0.0
+    - uses: devops-actions/actionlint@1127887bc5b38beddaafc906b5f293430ef6d255 # v2.0.1
       # trying to find a way to fail the workflow, but not block the PR, so far no luck with required workflows
       #continue-on-error: true
       
