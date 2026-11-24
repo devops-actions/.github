@@ -72,7 +72,7 @@ jobs:
           discovery-enabled: false
       
       - name: Fetch dependents counts
-        uses: devops-actions/load-dependents-count@0d262a83629049daf94663490d021533d77da695 # v0.0.2
+        uses: devops-actions/load-dependents-count@0b0404543bcf53681ffbe7ca4580ecbe1b995e19 # v1.0.0
         with:
           scope-file: ossf-reporting/scope.json
           output-file: ossf-reporting/repo-usage.json
