@@ -35,7 +35,7 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: devops-actions/issue-comment-tag@3a605c5f21e15e5b963c866421bf4189bcc32310 # v0.1.10
+      - uses: devops-actions/issue-comment-tag@d142a09c7661623a1f80b4267ee80ee321c20e3c # v1.0.0
         with:
           team: ${{ inputs.tag_team }}
           issue: ${{ inputs.issue }}
